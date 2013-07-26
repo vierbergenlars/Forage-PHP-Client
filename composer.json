@@ -1,0 +1,22 @@
+{
+    "name": "vierbergenlars/norch-php-client",
+    "description": "PHP client for the norch search server",
+    "require": {
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "vierbergenlars/simpletest": "1.1.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lars Vierbergen",
+            "email": "vierbergenlars@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "vierbergenlars\\Norch": "lib/"
+        }
+    }
+}

@@ -18,5 +18,8 @@
         "psr-0": {
             "vierbergenlars\\Norch": "lib/"
         }
+    },
+    "archive": {
+        "exclude": ["/test"]
     }
 }

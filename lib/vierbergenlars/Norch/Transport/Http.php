@@ -80,8 +80,10 @@ class Http implements TransportInterface
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $reply = curl_exec($ch);
+        if(curl_errno($ch))
+            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
         curl_close($ch);
-        if($reply === 'indexed batch: '.$docid.'.json'."\r\n")
+        if(trim($reply) === 'indexed batch: '.$docid.'.json')
             return true;
         return false;
     }
@@ -111,7 +113,8 @@ class Http implements TransportInterface
     {
         $querystring = '?q='.$query;
         if($searchFields) {
-            $querystring.='&searchFields='.implode(',', $searchFields);
+            foreach($searchFields as $field)
+                $querystring.='&searchFields[]='.$field;
         }
         if($facets) {
             $querystring.='&facets='.implode(',', $facets);
@@ -139,6 +142,8 @@ class Http implements TransportInterface
             throw new TransportException('Cannot open a cURL session');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $resp = curl_exec($ch);
+        if(curl_errno($ch))
+            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
         curl_close($ch);
 
         return json_decode($resp, true);
@@ -162,8 +167,10 @@ class Http implements TransportInterface
             'docID'=>$docId
         ));
         $resp = curl_exec($ch);
+        if(curl_errno($ch))
+            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
         curl_close($ch);
-        if($resp === "deleted ".$docId."\r\n")
+        if(trim($resp) === 'deleted '.$docId)
             return true;
         return false;
     }
@@ -181,6 +188,8 @@ class Http implements TransportInterface
             throw new TransportException('Cannot open a cURL session');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $resp = curl_exec($ch);
+        if(curl_errno($ch))
+            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
         curl_close($ch);
 
         return json_decode($resp, true);

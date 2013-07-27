@@ -1,5 +1,5 @@
 {
-    "name": "vierbergenlars/norch-php-client",
+    "name": "vierbergenlars/norch-client",
     "description": "PHP client for the norch search server",
     "require": {
         "ext-curl": "*"

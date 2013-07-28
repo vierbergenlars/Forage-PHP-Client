@@ -19,5 +19,6 @@ class NorchClientTests extends \TestSuite
         $this->add(new searchresult\facet);
         $this->add(new searchresult\searchresult);
         $this->add(new searchquery\query);
+        $this->add(new searchquery\querybuilder);
     }
 }

@@ -5,6 +5,9 @@ namespace vierbergenlars\Norch\SearchQuery;
 use vierbergenlars\Norch\Transport\TransportInterface;
 use vierbergenlars\Norch\SearchResult\SearchResult;
 
+/**
+ * A search query
+ */
 class Query
 {
     /**

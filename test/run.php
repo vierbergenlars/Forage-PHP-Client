@@ -22,6 +22,7 @@ class NorchClientTests extends \TestSuite
         $this->add(new searchquery\querybuilder);
         $this->add(new searchquery\transportawarequery);
         $this->add(new searchindex\index);
+        $this->add(new searchindex\transportawareindex);
         $this->add(new client);
     }
 }

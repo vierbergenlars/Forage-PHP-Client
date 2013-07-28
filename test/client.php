@@ -14,4 +14,12 @@ class client extends \UnitTestCase
         $this->assertIsA($client->createQueryBuilder(), 'vierbergenlars\Norch\SearchQuery\QueryBuilder');
         $this->assertIsA($client->createQueryBuilder()->getQuery(), 'vierbergenlars\Norch\SearchQuery\TransportAwareQuery');
     }
+
+    function testGetIndex()
+    {
+        $transport = new searchindex\TransportMock;
+        $client = new NorchClient($transport);
+
+        $this->assertIsA($client->getIndex(), 'vierbergenlars\Norch\SearchIndex\TransportAwareIndex');
+    }
 }

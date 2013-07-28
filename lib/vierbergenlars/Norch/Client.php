@@ -5,6 +5,7 @@ namespace vierbergenlars\Norch;
 use vierbergenlars\Norch\Transport\TransportInterface;
 use vierbergenlars\Norch\SearchQuery\TransportAwareQuery;
 use vierbergenlars\Norch\SearchQuery\QueryBuilder;
+use vierbergenlars\Norch\SearchIndex\TransportAwareIndex;
 
 class Client
 {
@@ -31,5 +32,14 @@ class Client
     {
         $query = new TransportAwareQuery($this->transport);
         return new QueryBuilder($query);
+    }
+
+    /**
+     * Gets the search index
+     * @return \vierbergenlars\Norch\SearchIndex\TransportAwareIndex
+     */
+    public function getIndex()
+    {
+        return new TransportAwareIndex($this->transport);
     }
 }

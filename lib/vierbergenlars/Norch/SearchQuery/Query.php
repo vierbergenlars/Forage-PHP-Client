@@ -3,7 +3,6 @@
 namespace vierbergenlars\Norch\SearchQuery;
 
 use vierbergenlars\Norch\Transport\TransportInterface;
-use vierbergenlars\Norch\SearchResult\SearchResult;
 
 /**
  * A search query
@@ -51,6 +50,12 @@ class Query
      * @var array
      */
     public $weights = array();
+
+    /**
+     * The class that parses the results
+     * @var string
+     */
+    protected $searchResultClass = '\vierbergenlars\Norch\SearchResult\SearchResult';
 
     /**
      * Creates a new search query
@@ -158,6 +163,8 @@ class Query
             $this->weights
         );
 
-        return new SearchResult($result);
+        $resultClass = $this->searchResultClass;
+
+        return new $resultClass($result);
     }
 }

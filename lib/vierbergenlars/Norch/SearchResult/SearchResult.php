@@ -22,6 +22,18 @@ class SearchResult extends \ArrayObject
     private $facets = array();
 
     /**
+     * The class that is instanciated for a hit
+     * @var string
+     */
+    protected $hitClass = '\vierbergenlars\Norch\SearchResult\Hit';
+
+    /**
+     * The class that is instanciated for a facet
+     * @var string
+     */
+    protected $facetClass = '\vierbergenlars\Norch\SearchResult\Facet';
+
+    /**
      * Creates a new SearchResult object
      *
      * @private
@@ -30,12 +42,14 @@ class SearchResult extends \ArrayObject
     public function __construct(array $result_array)
         {
         $this->totalHits = $result_array['totalHits'];
+        $facetClass = $this->facetClass;
+        $hitClass = $this->hitClass;
         foreach($result_array['facets'] as $field=>$results) {
-            $this->facets[] = new Facet($field, $results);
+            $this->facets[] = new $facetClass($field, $results);
         }
         $hits = array();
         foreach($result_array['hits'] as $hit) {
-            $hits[] = new Hit($hit);
+            $hits[] = new $hitClass($hit);
         }
         parent::__construct($hits);
     }

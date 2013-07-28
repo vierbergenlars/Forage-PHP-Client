@@ -13,7 +13,7 @@ class TransportAwareIndex extends Index
      * The transport to use
      * @var \vierbergenlars\Norch\Transport\TransportInterface
      */
-    private $transport;
+    protected $transport;
 
     /**
      * Creates a new index with a transport

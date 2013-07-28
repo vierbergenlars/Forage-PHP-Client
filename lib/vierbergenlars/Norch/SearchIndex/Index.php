@@ -13,19 +13,19 @@ class Index
      * The documents in the queue to be uploaded
      * @var array
      */
-    private $uploadedDocuments = array();
+    protected $uploadedDocuments = array();
 
     /**
      * The documents in the queue to be deleted
      * @var array
      */
-    private $removedDocuments = array();
+    protected $removedDocuments = array();
 
     /**
      * The fields to facet the uploaded documents on
      * @var array
      */
-    private $facetFields = array();
+    protected $facetFields = array();
 
     /**
      * Creates a new search index

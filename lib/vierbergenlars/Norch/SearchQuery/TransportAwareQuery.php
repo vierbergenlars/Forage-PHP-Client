@@ -13,7 +13,7 @@ class TransportAwareQuery extends Query
      * The transport to use
      * @var \vierbergenlars\Norch\Transport\TransportInterface
      */
-    private $transport;
+    protected $transport;
 
     /**
      * Creates a new query with a transport

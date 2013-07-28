@@ -12,7 +12,7 @@ class Facet extends \ArrayObject
      *
      * @var string
      */
-    private $field;
+    protected $field;
 
     /**
      * Creates a new facet

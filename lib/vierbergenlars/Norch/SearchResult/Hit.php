@@ -12,20 +12,20 @@ class Hit
      *
      * @var array
      */
-    private $matchedTerms;
+    protected $matchedTerms;
 
     /**
      * The matched document
      *
      * @var array
      */
-    private $document;
+    protected $document;
 
     /**
      * The result score for the document
      * @var float
      */
-    private $score;
+    protected $score;
 
     /**
      * Creates a new hit object

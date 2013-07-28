@@ -12,14 +12,14 @@ class SearchResult extends \ArrayObject
      *
      * @var int
      */
-    private $totalHits = 0;
+    protected $totalHits = 0;
 
     /**
      * The facets for the search query
      *
      * @var array
      */
-    private $facets = array();
+    protected $facets = array();
 
     /**
      * The class that is instanciated for a hit

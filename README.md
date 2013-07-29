@@ -1,6 +1,8 @@
 Norch-PHP-Client
 ================
 
+[![Build Status](https://travis-ci.org/vierbergenlars/Norch-PHP-Client.png?branch=master)](https://travis-ci.org/vierbergenlars/Norch-PHP-Client)
+
 A PHP client for the Norch search server
 
 License: [MIT](https://github.com/vierbergenlars/Norch-PHP-Client/blob/master/LICENSE)

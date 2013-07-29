@@ -22,4 +22,12 @@ class client extends \UnitTestCase
 
         $this->assertIsA($client->getIndex(), 'vierbergenlars\Norch\SearchIndex\TransportAwareIndex');
     }
+
+    function testCreateDocumentMapper()
+    {
+        $transport = new searchquery\TransportMock;
+        $client = new NorchClient($transport);
+
+        $this->assertIsA($client->createDocumentMapper(__NAMESPACE__.'\odm\DocumentObject'), 'vierbergenlars\Norch\ODM\DocumentMapper');
+    }
 }

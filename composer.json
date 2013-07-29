@@ -2,7 +2,8 @@
     "name": "vierbergenlars/norch-client",
     "description": "PHP client for the norch search server",
     "require": {
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "vierbergenlars/defer": "dev-master"
     },
     "require-dev": {
         "vierbergenlars/simpletest": "1.1.2"

@@ -6,6 +6,7 @@ use vierbergenlars\Norch\Transport\TransportInterface;
 use vierbergenlars\Norch\SearchQuery\TransportAwareQuery;
 use vierbergenlars\Norch\SearchQuery\QueryBuilder;
 use vierbergenlars\Norch\SearchIndex\TransportAwareIndex;
+use vierbergenlars\Norch\ODM\DocumentMapper;
 
 class Client
 {
@@ -41,5 +42,15 @@ class Client
     public function getIndex()
     {
         return new TransportAwareIndex($this->transport);
+    }
+
+    /**
+     * Creates a new document mapper
+     * @param string $hydrateObject The object to map the results to
+     * @return \vierbergenlars\Norch\ODM\DocumentMapper
+     */
+    public function createDocumentMapper($hydrateObject)
+    {
+        return new DocumentMapper($this->transport, $hydrateObject);
     }
 }

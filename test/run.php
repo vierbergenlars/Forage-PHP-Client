@@ -26,3 +26,15 @@ class NorchClientTests extends \TestSuite
         $this->add(new client);
     }
 }
+
+class NorchODMTests extends \TestSuite
+{
+    public function __construct() {
+        parent::__construct('Norch ODM tests');
+        $this->add(new odm\searchhit);
+        $this->add(new odm\searchresult);
+        $this->add(new odm\searchquery);
+        $this->add(new odm\searchindex);
+        $this->add(new odm\documentmapper);
+    }
+}

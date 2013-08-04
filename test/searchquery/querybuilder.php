@@ -79,7 +79,7 @@ class querybuilder extends \UnitTestCase
 
     function testGetQueryDetachedQueryFromQueryBuilder()
     {
-        $builder = new SearchQueryBuilder;
+        $builder = new SearchQueryBuilder(new SearchQuery(new TransportMock));
         $q1 = $builder->addFacet('a')
                 ->addFacet('b')
                 ->removeFacet('a')

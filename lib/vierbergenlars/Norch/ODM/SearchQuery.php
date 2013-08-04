@@ -22,6 +22,7 @@ class SearchQuery extends TransportAwareQuery
     /**
      * Creates a new search query
      *
+     * @internal
      * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
      * @param string $hydrateObject The name of the object to hydrate, and should implement \Defer\Deferrable
      * @param string $query

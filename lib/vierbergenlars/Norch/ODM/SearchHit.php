@@ -12,6 +12,7 @@ class SearchHit extends Hit
 {
     /**
      * Hydrates the document into an object
+     * @internal
      * @param string $object The name of the object to hydrate to
      */
     public function hydrateObject($object)

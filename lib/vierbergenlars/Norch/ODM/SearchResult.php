@@ -13,6 +13,7 @@ class SearchResult extends Result
 
     /**
      * Hydrates all results into objects
+     * @internal
      * @param string $object The name of the object to hydrate into
      */
     public function hydrateObject($object)

@@ -49,7 +49,6 @@ class querybuilder extends \UnitTestCase
         $this->assertEqual($q1->facetFields, array('b'));
         $this->assertEqual($q1->searchFields, array('b'));
 
-
         $builder = new SearchQueryBuilder;
         $q2 = $builder->addFilter('a', 'a')
                 ->addFilter('a', array('b','c'))
@@ -75,6 +74,26 @@ class querybuilder extends \UnitTestCase
                 ->getQuery();
         $this->assertEqual($q5->searchFilters, $q4->searchFilters);
         $this->assertEqual($q5->weights, array('d'=>array(5), 'b'=>array(2,5)));
+    }
 
+    function testGetQueryDetachedQueryFromQueryBuilder()
+    {
+        $builder = new SearchQueryBuilder;
+        $q1 = $builder->addFacet('a')
+                ->addFacet('b')
+                ->removeFacet('a')
+                ->addSearchField('a')
+                ->addSearchField('b')
+                ->removeSearchField('a')
+                ->getQuery();
+        $this->assertEqual($q1->facetFields, array('b'));
+        $this->assertEqual($q1->searchFields, array('b'));
+
+        $q1_ = $builder->removeFacet('b')
+                ->getQuery();
+        $this->assertEqual($q1_->facetFields, array());
+        $this->assertEqual($q1_->searchFields, array('b'));
+        $this->assertEqual($q1->facetFields, array('b'));
+        $this->assertEqual($q1->searchFields, array('b'));
     }
 }

@@ -156,7 +156,7 @@ class QueryBuilder
      */
     public function getQuery()
     {
-        return $this->query;
+        return clone $this->query;
     }
 
     public function __clone()

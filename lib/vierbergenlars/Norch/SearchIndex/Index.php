@@ -28,16 +28,24 @@ class Index
     protected $facetFields = array();
 
     /**
+     * The transport to use
+     * @var \vierbergenlars\Norch\Transport\TransportInterface
+     */
+    protected $transport;
+
+    /**
      * Creates a new search index
+     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
      * @param array $documents The documents to upload. The array key is the document ID.
      * @param array $facetFields The fields to facet on
      */
-    public function __construct(array $documents = array(), array $facetFields = array())
+    public function __construct(TransportInterface $transport, array $documents = array(), array $facetFields = array())
     {
         foreach($documents as $id=>$document)
             $this->addDocument($id, $document);
         foreach($facetFields as $field)
             $this->addFacetField ($field);
+        $this->transport = $transport;
     }
 
     /**
@@ -90,18 +98,17 @@ class Index
 
     /**
      * Sends all changes to the index to the transport
-     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
      * @return bool
      */
-    public function flush(TransportInterface $transport)
+    public function flush()
     {
         $statuses = array();
         foreach($this->removedDocuments as $id=>$_)
         {
-            $statuses[] = $transport->deleteDoc($id);
+            $statuses[] = $this->transport->deleteDoc($id);
         }
         if(count($this->uploadedDocuments) > 0)
-            $statuses[] = $transport->indexBatch($this->uploadedDocuments, array_keys($this->facetFields));
+            $statuses[] = $this->transport->indexBatch($this->uploadedDocuments, array_keys($this->facetFields));
 
         if(!in_array(false, $statuses)) {
             $this->removedDocuments = array();

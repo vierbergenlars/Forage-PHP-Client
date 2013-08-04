@@ -2,12 +2,12 @@
 
 namespace vierbergenlars\Norch\ODM;
 
-use vierbergenlars\Norch\SearchIndex\TransportAwareIndex;
+use vierbergenlars\Norch\SearchIndex\Index;
 
 /**
  * A search index that can index object
  */
-class SearchIndex extends TransportAwareIndex
+class SearchIndex extends Index
 {
     /**
      * {@inheritDoc}

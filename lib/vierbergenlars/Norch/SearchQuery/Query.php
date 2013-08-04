@@ -58,11 +58,18 @@ class Query
     protected $searchResultClass = '\vierbergenlars\Norch\SearchResult\SearchResult';
 
     /**
+     * The transport to use
+     * @var \vierbergenlars\Norch\Transport\TransportInterface
+     */
+    protected $transport;
+
+    /**
      * Creates a new search query
-     *
+     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
      * @param string $query
      */
-    public function __construct($query = '') {
+    public function __construct(TransportInterface $transport, $query = '') {
+        $this->transport = $transport;
         $this->query = $query;
     }
 
@@ -148,12 +155,11 @@ class Query
 
     /**
      * Executes the query
-     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
      * @return \vierbergenlars\Norch\SearchResult\SearchResult
      */
-    public function execute(TransportInterface $transport)
+    public function execute()
     {
-        $result = $transport->search(
+        $result = $this->transport->search(
             $this->query,
             $this->searchFields,
             $this->facetFields,

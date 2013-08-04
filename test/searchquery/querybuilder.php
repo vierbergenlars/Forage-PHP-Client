@@ -3,12 +3,13 @@
 namespace test\searchquery;
 
 use vierbergenlars\Norch\SearchQuery\QueryBuilder as SearchQueryBuilder;
+use vierbergenlars\Norch\SearchQuery\Query as SearchQuery;
 
 class querybuilder extends \UnitTestCase
 {
     function testQueryBuilderAdd()
     {
-        $builder = new SearchQueryBuilder;
+        $builder = new SearchQueryBuilder(new SearchQuery(new TransportMock));
         $query = $builder->setSearchQuery('lol')
                 ->addSearchField('title')
                 ->addSearchField('categories')
@@ -38,7 +39,7 @@ class querybuilder extends \UnitTestCase
 
     function testQueryBuilderRemove()
     {
-        $builder = new SearchQueryBuilder;
+        $builder = new SearchQueryBuilder(new SearchQuery(new TransportMock));
         $q1 = $builder->addFacet('a')
                 ->addFacet('b')
                 ->removeFacet('a')
@@ -49,7 +50,7 @@ class querybuilder extends \UnitTestCase
         $this->assertEqual($q1->facetFields, array('b'));
         $this->assertEqual($q1->searchFields, array('b'));
 
-        $builder = new SearchQueryBuilder;
+        $builder = new SearchQueryBuilder(new SearchQuery(new TransportMock));
         $q2 = $builder->addFilter('a', 'a')
                 ->addFilter('a', array('b','c'))
                 ->removeFilter('a', 'b')

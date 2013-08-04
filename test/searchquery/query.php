@@ -8,11 +8,10 @@ class query extends \UnitTestCase
 {
     function testSimpleQuery()
     {
-        $query = new SearchQuery('lol');
-
         $transport = new TransportMock;
+        $query = new SearchQuery($transport, 'lol');
 
-        $this->assertIsA($query->execute($transport), 'vierbergenlars\Norch\SearchResult\SearchResult');
+        $this->assertIsA($query->execute(), 'vierbergenlars\Norch\SearchResult\SearchResult');
 
         $this->assertEqual($transport->calls, 1, 'The query function should be called exactly once');
         $this->assertEqual($transport->arguments, array('lol', array(), array(), array(), 0, 10, array()));
@@ -20,8 +19,8 @@ class query extends \UnitTestCase
 
     function testFullQuery()
     {
-        $query = new SearchQuery();
         $transport = new TransportMock;
+        $query = new SearchQuery($transport);
 
         $result = $query->setQuery('lol')
                 ->setSearchFields(array('categories'))
@@ -30,7 +29,7 @@ class query extends \UnitTestCase
                 ->setOffset(2)
                 ->setLimit(3)
                 ->setWeights(array('body'=>array(3)))
-                ->execute($transport);
+                ->execute();
 
         $this->assertEqual($query->query, 'lol');
         $this->assertEqual($query->searchFields, array('categories'));

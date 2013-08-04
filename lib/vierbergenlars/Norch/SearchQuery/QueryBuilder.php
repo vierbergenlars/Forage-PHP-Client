@@ -2,6 +2,7 @@
 
 namespace vierbergenlars\Norch\SearchQuery;
 
+use vierbergenlars\Norch\SearchQuery\Query;
 /**
  * Helps building search queries
  */
@@ -17,11 +18,8 @@ class QueryBuilder
      * Creates a new query builder
      * @param \vierbergenlars\Norch\SearchQuery\Query $query Override the query object that is built
      */
-    public function __construct($query = null)
+    public function __construct(Query $query)
     {
-        if(!$query)
-            $this->query = new Query;
-        else
             $this->query = $query;
     }
 

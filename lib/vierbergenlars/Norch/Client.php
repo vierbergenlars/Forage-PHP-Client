@@ -3,9 +3,9 @@
 namespace vierbergenlars\Norch;
 
 use vierbergenlars\Norch\Transport\TransportInterface;
-use vierbergenlars\Norch\SearchQuery\TransportAwareQuery;
+use vierbergenlars\Norch\SearchQuery\Query;
 use vierbergenlars\Norch\SearchQuery\QueryBuilder;
-use vierbergenlars\Norch\SearchIndex\TransportAwareIndex;
+use vierbergenlars\Norch\SearchIndex\Index;
 use vierbergenlars\Norch\ODM\DocumentMapper;
 
 class Client
@@ -31,7 +31,7 @@ class Client
      */
     public function createQueryBuilder()
     {
-        $query = new TransportAwareQuery($this->transport);
+        $query = new Query($this->transport);
         return new QueryBuilder($query);
     }
 
@@ -41,7 +41,7 @@ class Client
      */
     public function getIndex()
     {
-        return new TransportAwareIndex($this->transport);
+        return new Index($this->transport);
     }
 
     /**

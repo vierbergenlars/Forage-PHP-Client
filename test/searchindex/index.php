@@ -8,7 +8,8 @@ class index extends \UnitTestCase
 {
     public function testSearchIndexUpload()
     {
-        $index = new SearchIndex(array(
+        $transport = new TransportMock;
+        $index = new SearchIndex($transport, array(
             'doc1'=>array('title'=>'a', 'body'=>'b', 'categories'=>array('a','b')),
             'doc2'=>array('title'=>'b', 'body'=>'c', 'categories'=>array('b','c'))
         ), array('categories', 'body'));
@@ -17,9 +18,7 @@ class index extends \UnitTestCase
                 ->addFacetField('title')
                 ->removeFacetField('body');
 
-        $transport = new TransportMock;
-
-        $status = $index->flush($transport);
+        $status = $index->flush();
 
         $this->assertTrue($status);
 
@@ -38,15 +37,14 @@ class index extends \UnitTestCase
 
     function testSearchIndexDelete()
     {
-        $index = new SearchIndex;
+        $transport = new TransportMock;
+        $index = new SearchIndex($transport);
 
         $index->removeDocument('doc1')
                 ->removeDocument('doc2')
                 ->removeDocument('doc5');
 
-        $transport = new TransportMock;
-
-        $status = $index->flush($transport);
+        $status = $index->flush();
 
         $this->assertTrue($status);
 
@@ -57,7 +55,8 @@ class index extends \UnitTestCase
 
     function testSearchIndexAddDelete()
     {
-        $index = new SearchIndex;
+        $transport = new TransportMock;
+        $index = new SearchIndex($transport);
 
         $index->addDocument(1, array('title'=>'a'))
                 ->addDocument(2, array('title'=>'b'))
@@ -71,9 +70,7 @@ class index extends \UnitTestCase
 
         $index->addDocument(5, array('title'=>'e'));
 
-        $transport = new TransportMock;
-
-        $status = $index->flush($transport);
+        $status = $index->flush();
 
         $this->assertTrue($status);
 
@@ -88,33 +85,5 @@ class index extends \UnitTestCase
                 5=>array('title'=>'e')
             ), array()
         ));
-    }
-
-    function testFailingTransport()
-    {
-        $index = new SearchIndex;
-
-        $index->addDocument(1, array('title'=>'a'))
-                ->removeDocument(5);
-
-        $transport = new FailingTransportMock;
-        $status = $index->flush($transport);
-        $this->assertFalse($status);
-
-        $goodTransport = new TransportMock;
-        $status = $index->flush($goodTransport);
-        $this->assertTrue($status);
-        $this->assertEqual($goodTransport->deleteCalls, 1);
-        $this->assertEqual($goodTransport->indexCalls, 1);
-
-        $alsoGoodTransport = new TransportMock;
-        $status = $index->flush($alsoGoodTransport);
-        $this->assertTrue($status);
-        $this->assertEqual($alsoGoodTransport->deleteCalls, 0);
-        $this->assertEqual($alsoGoodTransport->indexCalls, 0);
-
-        $badTransport = new FailingTransportMock;
-        $status = $index->flush($transport);
-        $this->assertTrue($status, 'Failing transport, but nothing to send should succeed');
     }
 }

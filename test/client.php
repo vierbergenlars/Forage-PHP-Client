@@ -12,7 +12,7 @@ class client extends \UnitTestCase
         $client = new NorchClient($transport);
 
         $this->assertIsA($client->createQueryBuilder(), 'vierbergenlars\Norch\SearchQuery\QueryBuilder');
-        $this->assertIsA($client->createQueryBuilder()->getQuery(), 'vierbergenlars\Norch\SearchQuery\TransportAwareQuery');
+        $this->assertIsA($client->createQueryBuilder()->getQuery(), 'vierbergenlars\Norch\SearchQuery\Query');
     }
 
     function testGetIndex()
@@ -20,7 +20,7 @@ class client extends \UnitTestCase
         $transport = new searchindex\TransportMock;
         $client = new NorchClient($transport);
 
-        $this->assertIsA($client->getIndex(), 'vierbergenlars\Norch\SearchIndex\TransportAwareIndex');
+        $this->assertIsA($client->getIndex(), 'vierbergenlars\Norch\SearchIndex\Index');
     }
 
     function testCreateDocumentMapper()

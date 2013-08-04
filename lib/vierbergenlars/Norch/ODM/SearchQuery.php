@@ -2,13 +2,13 @@
 
 namespace vierbergenlars\Norch\ODM;
 
-use vierbergenlars\Norch\SearchQuery\TransportAwareQuery;
+use vierbergenlars\Norch\SearchQuery\Query;
 use vierbergenlars\Norch\Transport\TransportInterface;
 
 /**
  * A search query that automatically converts all search results to an hydrated object
  */
-class SearchQuery extends TransportAwareQuery
+class SearchQuery extends Query
 {
 
     protected $searchResultClass = '\vierbergenlars\Norch\ODM\SearchResult';

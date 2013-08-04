@@ -110,11 +110,9 @@ class Index
         if(count($this->uploadedDocuments) > 0)
             $statuses[] = $this->transport->indexBatch($this->uploadedDocuments, array_keys($this->facetFields));
 
-        if(!in_array(false, $statuses)) {
-            $this->removedDocuments = array();
-            $this->uploadedDocuments = array();
-            return true;
-        }
-        return false;
+        $this->removedDocuments = array();
+        $this->uploadedDocuments = array();
+
+        return !in_array(false, $statuses);
     }
 }

@@ -77,6 +77,8 @@ class Index
      */
     public function addDocument($document)
     {
+        if (!is_array($document))
+            throw new \BadMethodCallException('Parameter 1 of ' . __METHOD__ . ' should be array, ' . (is_object($document) ? get_class($document) : gettype($document)) . ' given.');
         $id = $document['id'];
         unset($document['id']);
         unset($this->removedDocuments[$id]);

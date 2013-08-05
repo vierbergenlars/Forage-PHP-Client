@@ -15,7 +15,10 @@ class SearchIndex extends Index
      * @param \vierbergenlars\Norch\ODM\Indexable $document
      * @return \vierbergenlars\Norch\ODM\SearchIndex
      */
-    public function addDocument(Indexable $document) {
+    public function addDocument($document)
+    {
+        if (!($document instanceof Indexable))
+            throw new \BadMethodCallException('Parameter 1 of ' . __METHOD__ . ' should be Indexable, ' . (is_object($document) ? get_class($document) : gettype($document)) . ' given.');
         parent::addDocument($document->toDocument());
         return $this;
     }

@@ -14,7 +14,7 @@ class NorchClientTests extends \TestSuite
     public function __construct()
     {
         parent::__construct('Norch Client tests');
-        if (getenv('CI'))
+        if (!getenv('CI'))
             $this->add(new transport\http);
         $this->add(new searchresult\hit);
         $this->add(new searchresult\facet);

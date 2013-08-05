@@ -3,6 +3,7 @@
 namespace test\odm;
 
 use vierbergenlars\Norch\ODM\SearchResult as Result;
+use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchresult extends \UnitTestCase
 {
@@ -73,8 +74,9 @@ class searchresult extends \UnitTestCase
 }', true);
 
         $result = new Result($result_array);
+        $hydationSettings = new SingleObjectHydration(__NAMESPACE__ . '\DocumentObject');
 
-        $result->hydrateObject(__NAMESPACE__.'\DocumentObject');
+        $result->hydrate($hydationSettings);
 
         foreach($result as $hit)
         {

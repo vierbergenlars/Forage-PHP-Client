@@ -3,6 +3,7 @@
 namespace vierbergenlars\Norch\ODM;
 
 use vierbergenlars\Norch\SearchResult\Hit;
+use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
 use Defer\Object as Defer;
 
 /**
@@ -13,14 +14,16 @@ class SearchHit extends Hit
     /**
      * Hydrates the document into an object
      * @internal
-     * @param string $object The name of the object to hydrate to
+     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
      */
-    public function hydrateObject($object)
+    public function hydrate(HydrationSettingsInterface $hydrationSettings)
     {
         array_walk($this->document, function(&$field) {
             if(is_array($field))
                 $field = new \ArrayObject($field);
         });
-        $this->document = Defer::defer($this->getDocument(), $object);
+        $document = $hydrationSettings->getParameters($this->document);
+        $class = $hydrationSettings->getClass($this->document);
+        $this->document = Defer::defer($document, $class);
     }
 }

@@ -3,6 +3,7 @@
 namespace test;
 
 use vierbergenlars\Norch\Client as NorchClient;
+use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
 
 class client extends \UnitTestCase
 {
@@ -26,8 +27,10 @@ class client extends \UnitTestCase
     function testCreateDocumentMapper()
     {
         $transport = new searchquery\TransportMock;
+        $hydrationSettings = new SingleObjectHydration('test\odm\DocumentObject');
         $client = new NorchClient($transport);
 
-        $this->assertIsA($client->createDocumentMapper(__NAMESPACE__.'\odm\DocumentObject'), 'vierbergenlars\Norch\ODM\DocumentMapper');
+        $this->assertIsA($client->createDocumentMapper($hydrationSettings),
+                                                       'vierbergenlars\Norch\ODM\DocumentMapper');
     }
 }

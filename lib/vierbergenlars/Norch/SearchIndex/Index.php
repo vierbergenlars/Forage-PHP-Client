@@ -75,7 +75,7 @@ class Index
      * @param array $document Should contain a parameter 'id', that will be used as an id
      * @return \vierbergenlars\Norch\SearchIndex\Index
      */
-    public function addDocument(array $document)
+    public function addDocument($document)
     {
         $id = $document['id'];
         unset($document['id']);

@@ -16,7 +16,7 @@ class SearchIndex extends Index
      * @return \vierbergenlars\Norch\ODM\SearchIndex
      */
     public function addDocument(Indexable $document) {
-        parent::addDocument($document->getId(), $document->toDocument());
+        parent::addDocument($document->toDocument());
         return $this;
     }
 

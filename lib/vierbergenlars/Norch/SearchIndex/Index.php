@@ -41,8 +41,8 @@ class Index
      */
     public function __construct(TransportInterface $transport, array $documents = array(), array $facetFields = array())
     {
-        foreach($documents as $id=>$document)
-            $this->addDocument($id, $document);
+        foreach($documents as $document)
+            $this->addDocument($document);
         foreach($facetFields as $field)
             $this->addFacetField ($field);
         $this->transport = $transport;
@@ -72,12 +72,13 @@ class Index
 
     /**
      * Adds a new document to the index
-     * @param int|string $id The id of the document
-     * @param array $document
+     * @param array $document Should contain a parameter 'id', that will be used as an id
      * @return \vierbergenlars\Norch\SearchIndex\Index
      */
-    public function addDocument($id, $document)
+    public function addDocument(array $document)
     {
+        $id = $document['id'];
+        unset($document['id']);
         unset($this->removedDocuments[$id]);
         $this->uploadedDocuments[$id] = $document;
         return $this;

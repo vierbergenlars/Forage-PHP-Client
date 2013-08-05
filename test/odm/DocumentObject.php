@@ -52,7 +52,8 @@ class DocumentObject implements Indexable
     }
 
     public function toDocument() {
-        return array(
+        return array (
+            'id' => $this->id,
             'title'=>  $this->title,
             'body'=>  $this->body,
             'categories'=>  $this->categories->getArrayCopy()

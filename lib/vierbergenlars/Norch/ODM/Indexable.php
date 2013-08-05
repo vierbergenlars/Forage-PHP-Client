@@ -10,14 +10,8 @@ use Defer\Deferrable;
 interface Indexable extends Deferrable
 {
     /**
-     * Gets the id of the document.
-     * @return string|int An unique identifier of the document
-     */
-    public function getId();
-
-    /**
      * Converts the object to a document.
-     * @return array The returned array should contain a mapping from fields to their values. It should not contain an id key.
+     * @return array The returned array should contain a mapping from fields to their values. It should also contain an id key.
      */
     public function toDocument();
 }

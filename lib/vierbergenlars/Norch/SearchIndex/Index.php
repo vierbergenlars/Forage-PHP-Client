@@ -76,7 +76,7 @@ class Index
      * @param array $document
      * @return \vierbergenlars\Norch\SearchIndex\Index
      */
-    public function addDocument($id, array $document)
+    public function addDocument($id, $document)
     {
         unset($this->removedDocuments[$id]);
         $this->uploadedDocuments[$id] = $document;

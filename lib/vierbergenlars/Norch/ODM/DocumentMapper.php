@@ -13,24 +13,20 @@ use vierbergenlars\Norch\SearchQuery\QueryBuilder;
 class DocumentMapper extends Client
 {
     /**
-     * The name of the object to hydrate
-     * @var string
+     * Settings for parameter injection
+     * @var \vierbergenlars\Norch\ODM\HydrationSettingsInterface
      */
-    protected $hydrateObject;
+    protected $hydrationSettings;
 
     /**
      * Creates a new document mapper
      * @param \vierbergenlars\Norch\Transport\TransportInterface $transport The transport to use
-     * @param string $hydrateObject The name of the object to hydrate.
-     *      The object should implement {@link \Defer\Deferrable}
-     * @throws \LogicException
+     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
      */
-    public function __construct(TransportInterface $transport, $hydrateObject) {
-        $interfaces = class_implements($hydrateObject);
-        if(!isset($interfaces['Defer\Deferrable']))
-            throw new \LogicException($hydrateObject.' should implement interface \Defer\Deferrable');
-
-        $this->hydrateObject = $hydrateObject;
+    public function __construct(TransportInterface $transport,
+                                HydrationSettingsInterface $hydrationSettings)
+    {
+        $this->hydrationSettings = $hydrationSettings;
         parent::__construct($transport);
     }
 
@@ -39,7 +35,7 @@ class DocumentMapper extends Client
      * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
      */
     public function createQueryBuilder() {
-        $query = new SearchQuery($this->transport, $this->hydrateObject);
+        $query = new SearchQuery($this->transport, $this->hydrationSettings);
         return new QueryBuilder($query);
     }
 

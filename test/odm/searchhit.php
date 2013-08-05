@@ -3,6 +3,7 @@
 namespace test\odm;
 
 use vierbergenlars\Norch\ODM\SearchHit as Hit;
+use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchhit extends \UnitTestCase
 {
@@ -27,8 +28,9 @@ class searchhit extends \UnitTestCase
         );
 
         $hit = new Hit($document);
+        $hydationSettings = new SingleObjectHydration(__NAMESPACE__ . '\DocumentObject');
 
-        $hit->hydrateObject(__NAMESPACE__.'\DocumentObject');
+        $hit->hydrate($hydationSettings);
 
         $this->assertIsA($hit->getDocument(), __NAMESPACE__.'\DocumentObject');
         $doc = $hit->getDocument();

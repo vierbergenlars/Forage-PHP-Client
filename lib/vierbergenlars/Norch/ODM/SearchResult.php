@@ -3,6 +3,7 @@
 namespace vierbergenlars\Norch\ODM;
 
 use vierbergenlars\Norch\SearchResult\SearchResult as Result;
+use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
 
 /**
  * A hydrateable search result
@@ -14,11 +15,11 @@ class SearchResult extends Result
     /**
      * Hydrates all results into objects
      * @internal
-     * @param string $object The name of the object to hydrate into
+     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
      */
-    public function hydrateObject($object)
+    public function hydrate(HydrationSettingsInterface $hydrationSettings)
     {
         foreach($this as $hit)
-            $hit->hydrateObject($object);
+            $hit->hydrate($hydrationSettings);
     }
 }

@@ -7,6 +7,7 @@ use vierbergenlars\Norch\SearchQuery\Query;
 use vierbergenlars\Norch\SearchQuery\QueryBuilder;
 use vierbergenlars\Norch\SearchIndex\Index;
 use vierbergenlars\Norch\ODM\DocumentMapper;
+use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
 
 class Client
 {
@@ -46,11 +47,11 @@ class Client
 
     /**
      * Creates a new document mapper
-     * @param string $hydrateObject The object to map the results to
+     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
      * @return \vierbergenlars\Norch\ODM\DocumentMapper
      */
-    public function createDocumentMapper($hydrateObject)
+    public function createDocumentMapper(HydrationSettingsInterface $hydrationSettings)
     {
-        return new DocumentMapper($this->transport, $hydrateObject);
+        return new DocumentMapper($this->transport, $hydrationSettings);
     }
 }

@@ -14,22 +14,24 @@ class SearchQuery extends Query
     protected $searchResultClass = '\vierbergenlars\Norch\ODM\SearchResult';
 
     /**
-     * The object to hydrate
-     * @var string
+     * Settings for object hydration
+     * @var \vierbergenlars\Norch\ODM\HydrationSettingsInterface
      */
-    protected $hydrateObject;
+    protected $hydrationSettings;
 
     /**
      * Creates a new search query
      *
      * @internal
      * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
-     * @param string $hydrateObject The name of the object to hydrate, and should implement \Defer\Deferrable
+     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
      * @param string $query
      */
-    public function __construct(TransportInterface $transport, $hydrateObject, $query = '')
+    public function __construct(TransportInterface $transport,
+                                HydrationSettingsInterface $hydrationSettings,
+                                $query = '')
     {
-        $this->hydrateObject = $hydrateObject;
+        $this->hydrationSettings = $hydrationSettings;
         parent::__construct($transport, $query);
     }
 
@@ -40,7 +42,7 @@ class SearchQuery extends Query
      */
     public function execute() {
         $searchResult = parent::execute();
-        $searchResult->hydrateObject($this->hydrateObject);
+        $searchResult->hydrate($this->hydrationSettings);
         return $searchResult;
     }
 }

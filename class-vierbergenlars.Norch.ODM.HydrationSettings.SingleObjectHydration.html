@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Interface vierbergenlars\Norch\ODM\Indexable | Norch-PHP-Client</title>
+	<title>Class vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration | Norch-PHP-Client</title>
 
 	<script type="text/javascript" src="resources/combined.js?45490431"></script>
 	<script type="text/javascript" src="elementlist.js?3119979473"></script>
@@ -29,7 +29,7 @@
 						<ul>
 				<li class="active"><a href="namespace-vierbergenlars.Norch.ODM.html">ODM<span></span></a>
 						<ul>
-				<li><a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html">HydrationSettings</a>
+				<li class="active"><a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html">HydrationSettings</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-vierbergenlars.Norch.SearchIndex.html">SearchIndex</a>
@@ -50,18 +50,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-vierbergenlars.Norch.ODM.DocumentMapper.html">DocumentMapper</a></li>
-				<li><a href="class-vierbergenlars.Norch.ODM.SearchHit.html">SearchHit</a></li>
-				<li><a href="class-vierbergenlars.Norch.ODM.SearchIndex.html">SearchIndex</a></li>
-				<li><a href="class-vierbergenlars.Norch.ODM.SearchQuery.html">SearchQuery</a></li>
-				<li><a href="class-vierbergenlars.Norch.ODM.SearchResult.html">SearchResult</a></li>
+				<li class="active"><a href="class-vierbergenlars.Norch.ODM.HydrationSettings.SingleObjectHydration.html">SingleObjectHydration</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html">HydrationSettingsInterface</a></li>
-				<li class="active"><a href="class-vierbergenlars.Norch.ODM.Indexable.html">Indexable</a></li>
-			</ul>
 
 
 
@@ -87,7 +78,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-vierbergenlars.Norch.ODM.html" title="Summary of vierbergenlars\Norch\ODM"><span>Namespace</span></a>
+				<a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html" title="Summary of vierbergenlars\Norch\ODM\HydrationSettings"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -102,20 +93,21 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Interface Indexable</h1>
+	<h1>Class SingleObjectHydration</h1>
 
 
 	<div class="description">
 	
-<p>Should be implemented by all objects that are indexable</p>
+<p>A simple hydration strategy that injects all parameters as-is in the
+object.</p>
 
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>vierbergenlars\Norch\ODM\Indexable</span></b>			
+<b><span>vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration</span></b>			
 			 implements 
-<span>Defer\Deferrable</span>
+				<a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html"><span>vierbergenlars\Norch\ODM\HydrationSettingsInterface</span></a>
 			
 			
 		</dd>
@@ -131,48 +123,52 @@
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Norch.html">Norch</a>\<a href="namespace-vierbergenlars.Norch.ODM.html">ODM</a><br />
+		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Norch.html">Norch</a>\<a href="namespace-vierbergenlars.Norch.ODM.html">ODM</a>\<a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html">HydrationSettings</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.Indexable.html#7-17" title="Go to source code">vierbergenlars/Norch/ODM/Indexable.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.HydrationSettings.SingleObjectHydration.html#7-49" title="Go to source code">vierbergenlars/Norch/ODM/HydrationSettings/SingleObjectHydration.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="toDocument" id="_toDocument">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
 			 public 
-			array
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_toDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Norch.ODM.Indexable.html#12-16" title="Go to source code">toDocument</a>( )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-vierbergenlars.Norch.ODM.HydrationSettings.SingleObjectHydration.html#18-29" title="Go to source code">__construct</a>( <span>string <var>$className</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Converts the object to a document.</p>
+<p>Creates a new simple hydration strategy</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Converts the object to a document.</p>
+<p>Creates a new simple hydration strategy</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$className</var></dt>
+					<dd><code>string</code><br>$className The class that will be hydrated (should implement <code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>)</dd>
+				</dl></div>
 
-				<h4>Returns</h4>
+
+				<h4>Throws</h4>
 				<div class="list">
-					<code>array</code><br>The returned array should contain a mapping from fields to their values. It
-should also contain an id key.<br />
+					<code><code><a href="class-LogicException.html">LogicException</a></code></code><br />
 				</div>
-
 
 
 
@@ -181,6 +177,15 @@ should also contain an id key.<br />
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#methods">vierbergenlars\Norch\ODM\HydrationSettingsInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#_getClass">getClass()</a>, 
+			<a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#_getParameters">getParameters()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

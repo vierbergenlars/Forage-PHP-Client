@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File vierbergenlars/Norch/SearchIndex/Index.php | Norch PHP Client</title>
+	<title>File vierbergenlars/Norch/SearchIndex/Index.php | Norch-PHP-Client</title>
 
 	<script type="text/javascript" src="resources/combined.js?45490431"></script>
-	<script type="text/javascript" src="elementlist.js?704287222"></script>
+	<script type="text/javascript" src="elementlist.js?3119979473"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -28,8 +28,11 @@
 						<ul>
 				<li class="active"><a href="namespace-vierbergenlars.Norch.html">Norch<span></span></a>
 						<ul>
-				<li><a href="namespace-vierbergenlars.Norch.ODM.html">ODM</a>
+				<li><a href="namespace-vierbergenlars.Norch.ODM.html">ODM<span></span></a>
+						<ul>
+				<li><a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html">HydrationSettings</a>
 						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-vierbergenlars.Norch.SearchIndex.html">SearchIndex</a>
 						</li>
 				<li><a href="namespace-vierbergenlars.Norch.SearchQuery.html">SearchQuery</a>
@@ -134,8 +137,8 @@
 </span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     */</span>
 </span><span id="42" class="l"><a class="l" href="#42"> 42: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(TransportInterface <span class="php-var">$transport</span>, <span class="php-keyword1">array</span> <span class="php-var">$documents</span> = <span class="php-keyword1">array</span>(), <span class="php-keyword1">array</span> <span class="php-var">$facetFields</span> = <span class="php-keyword1">array</span>())
 </span><span id="43" class="l"><a class="l" href="#43"> 43: </a>    {
-</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$documents</span> <span class="php-keyword1">as</span> <span class="php-var">$id</span>=&gt;<span class="php-var">$document</span>)
-</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>            <span class="php-var">$this</span>-&gt;addDocument(<span class="php-var">$id</span>, <span class="php-var">$document</span>);
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$documents</span> <span class="php-keyword1">as</span> <span class="php-var">$document</span>)
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>            <span class="php-var">$this</span>-&gt;addDocument(<span class="php-var">$document</span>);
 </span><span id="46" class="l"><a class="l" href="#46"> 46: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$facetFields</span> <span class="php-keyword1">as</span> <span class="php-var">$field</span>)
 </span><span id="47" class="l"><a class="l" href="#47"> 47: </a>            <span class="php-var">$this</span>-&gt;addFacetField (<span class="php-var">$field</span>);
 </span><span id="48" class="l"><a class="l" href="#48"> 48: </a>        <span class="php-var">$this</span>-&gt;transport = <span class="php-var">$transport</span>;
@@ -165,54 +168,57 @@
 </span><span id="72" class="l"><a class="l" href="#72"> 72: </a>
 </span><span id="73" class="l"><a class="l" href="#73"> 73: </a>    <span class="php-comment">/**
 </span></span><span id="74" class="l"><a class="l" href="#74"> 74: </a><span class="php-comment">     * Adds a new document to the index
-</span></span><span id="75" class="l"><a class="l" href="#75"> 75: </a><span class="php-comment">     * @param int|string $id The id of the document
-</span></span><span id="76" class="l"><a class="l" href="#76"> 76: </a><span class="php-comment">     * @param array $document
-</span></span><span id="77" class="l"><a class="l" href="#77"> 77: </a><span class="php-comment">     * @return \vierbergenlars\Norch\SearchIndex\Index
-</span></span><span id="78" class="l"><a class="l" href="#78"> 78: </a><span class="php-comment">     */</span>
-</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addDocument" href="#_addDocument">addDocument</a>(<span class="php-var">$id</span>, <span class="php-keyword1">array</span> <span class="php-var">$document</span>)
-</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>    {
-</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$this</span>-&gt;removedDocuments[<span class="php-var">$id</span>]);
-</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        <span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>] = <span class="php-var">$document</span>;
-</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>    }
-</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>
-</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>    <span class="php-comment">/**
-</span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">     * Removes a document from the index
-</span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     * @param int|string $id The id of the document
-</span></span><span id="89" class="l"><a class="l" href="#89"> 89: </a><span class="php-comment">     * @return \vierbergenlars\Norch\SearchIndex\Index
-</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     */</span>
-</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_removeDocument" href="#_removeDocument">removeDocument</a>(<span class="php-var">$id</span>)
-</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>    {
-</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>]))
-</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>]);
-</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>        <span class="php-var">$this</span>-&gt;removedDocuments[<span class="php-var">$id</span>] = <span class="php-keyword1">true</span>;
-</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>    }
-</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>
-</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>    <span class="php-comment">/**
-</span></span><span id="100" class="l"><a class="l" href="#100">100: </a><span class="php-comment">     * Sends all changes to the index to the transport
-</span></span><span id="101" class="l"><a class="l" href="#101">101: </a><span class="php-comment">     * @return bool
-</span></span><span id="102" class="l"><a class="l" href="#102">102: </a><span class="php-comment">     */</span>
-</span><span id="103" class="l"><a class="l" href="#103">103: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">flush</span>()
-</span><span id="104" class="l"><a class="l" href="#104">104: </a>    {
-</span><span id="105" class="l"><a class="l" href="#105">105: </a>        <span class="php-var">$statuses</span> = <span class="php-keyword1">array</span>();
-</span><span id="106" class="l"><a class="l" href="#106">106: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;removedDocuments <span class="php-keyword1">as</span> <span class="php-var">$id</span>=&gt;<span class="php-var">$_</span>)
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>        {
-</span><span id="108" class="l"><a class="l" href="#108">108: </a>            <span class="php-var">$statuses</span>[] = <span class="php-var">$this</span>-&gt;transport-&gt;deleteDoc(<span class="php-var">$id</span>);
-</span><span id="109" class="l"><a class="l" href="#109">109: </a>        }
-</span><span id="110" class="l"><a class="l" href="#110">110: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments) &gt; <span class="php-num">0</span>)
-</span><span id="111" class="l"><a class="l" href="#111">111: </a>            <span class="php-var">$statuses</span>[] = <span class="php-var">$this</span>-&gt;transport-&gt;indexBatch(<span class="php-var">$this</span>-&gt;uploadedDocuments, <span class="php-keyword2">array_keys</span>(<span class="php-var">$this</span>-&gt;facetFields));
-</span><span id="112" class="l"><a class="l" href="#112">112: </a>
-</span><span id="113" class="l"><a class="l" href="#113">113: </a>        <span class="php-var">$this</span>-&gt;removedDocuments = <span class="php-keyword1">array</span>();
-</span><span id="114" class="l"><a class="l" href="#114">114: </a>        <span class="php-var">$this</span>-&gt;uploadedDocuments = <span class="php-keyword1">array</span>();
+</span></span><span id="75" class="l"><a class="l" href="#75"> 75: </a><span class="php-comment">     * @param array $document Should contain a parameter 'id', that will be used as an id
+</span></span><span id="76" class="l"><a class="l" href="#76"> 76: </a><span class="php-comment">     * @return \vierbergenlars\Norch\SearchIndex\Index
+</span></span><span id="77" class="l"><a class="l" href="#77"> 77: </a><span class="php-comment">     */</span>
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addDocument" href="#_addDocument">addDocument</a>(<span class="php-var">$document</span>)
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>    {
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_array</span>(<span class="php-var">$document</span>))
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \BadMethodCallException(<span class="php-quote">'Parameter 1 of '</span> . __METHOD__ . <span class="php-quote">' should be array, '</span> . (<span class="php-keyword2">is_object</span>(<span class="php-var">$document</span>) ? <span class="php-keyword2">get_class</span>(<span class="php-var">$document</span>) : <span class="php-keyword2">gettype</span>(<span class="php-var">$document</span>)) . <span class="php-quote">' given.'</span>);
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        <span class="php-var">$id</span> = <span class="php-var">$document</span>[<span class="php-quote">'id'</span>];
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$document</span>[<span class="php-quote">'id'</span>]);
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>        <span class="php-keyword1">unset</span>(<span class="php-var">$this</span>-&gt;removedDocuments[<span class="php-var">$id</span>]);
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>        <span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>] = <span class="php-var">$document</span>;
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>    }
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>    <span class="php-comment">/**
+</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     * Removes a document from the index
+</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     * @param int|string $id The id of the document
+</span></span><span id="92" class="l"><a class="l" href="#92"> 92: </a><span class="php-comment">     * @return \vierbergenlars\Norch\SearchIndex\Index
+</span></span><span id="93" class="l"><a class="l" href="#93"> 93: </a><span class="php-comment">     */</span>
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_removeDocument" href="#_removeDocument">removeDocument</a>(<span class="php-var">$id</span>)
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>    {
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>]))
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>            <span class="php-keyword1">unset</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments[<span class="php-var">$id</span>]);
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>        <span class="php-var">$this</span>-&gt;removedDocuments[<span class="php-var">$id</span>] = <span class="php-keyword1">true</span>;
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>    }
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>    <span class="php-comment">/**
+</span></span><span id="103" class="l"><a class="l" href="#103">103: </a><span class="php-comment">     * Sends all changes to the index to the transport
+</span></span><span id="104" class="l"><a class="l" href="#104">104: </a><span class="php-comment">     * @return bool
+</span></span><span id="105" class="l"><a class="l" href="#105">105: </a><span class="php-comment">     */</span>
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">flush</span>()
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>    {
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>        <span class="php-var">$statuses</span> = <span class="php-keyword1">array</span>();
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;removedDocuments <span class="php-keyword1">as</span> <span class="php-var">$id</span>=&gt;<span class="php-var">$_</span>)
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>        {
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>            <span class="php-var">$statuses</span>[] = <span class="php-var">$this</span>-&gt;transport-&gt;deleteDoc(<span class="php-var">$id</span>);
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>        }
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>        <span class="php-keyword1">if</span>(<span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;uploadedDocuments) &gt; <span class="php-num">0</span>)
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>            <span class="php-var">$statuses</span>[] = <span class="php-var">$this</span>-&gt;transport-&gt;indexBatch(<span class="php-var">$this</span>-&gt;uploadedDocuments, <span class="php-keyword2">array_keys</span>(<span class="php-var">$this</span>-&gt;facetFields));
 </span><span id="115" class="l"><a class="l" href="#115">115: </a>
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-keyword1">return</span> !<span class="php-keyword2">in_array</span>(<span class="php-keyword1">false</span>, <span class="php-var">$statuses</span>);
-</span><span id="117" class="l"><a class="l" href="#117">117: </a>    }
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>}
-</span><span id="119" class="l"><a class="l" href="#119">119: </a></span></code></pre>
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-var">$this</span>-&gt;removedDocuments = <span class="php-keyword1">array</span>();
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>        <span class="php-var">$this</span>-&gt;uploadedDocuments = <span class="php-keyword1">array</span>();
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        <span class="php-keyword1">return</span> !<span class="php-keyword2">in_array</span>(<span class="php-keyword1">false</span>, <span class="php-var">$statuses</span>);
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>    }
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>}
+</span><span id="122" class="l"><a class="l" href="#122">122: </a></span></code></pre>
 
 	<div id="footer">
-		Norch PHP Client API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		Norch-PHP-Client API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

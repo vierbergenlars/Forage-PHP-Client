@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class vierbergenlars\Norch\ODM\SearchQuery | Norch-PHP-Client</title>
+	<title>Interface vierbergenlars\Norch\ODM\HydrationSettingsInterface | Norch-PHP-Client</title>
 
 	<script type="text/javascript" src="resources/combined.js?45490431"></script>
 	<script type="text/javascript" src="elementlist.js?3119979473"></script>
@@ -53,13 +53,13 @@
 				<li><a href="class-vierbergenlars.Norch.ODM.DocumentMapper.html">DocumentMapper</a></li>
 				<li><a href="class-vierbergenlars.Norch.ODM.SearchHit.html">SearchHit</a></li>
 				<li><a href="class-vierbergenlars.Norch.ODM.SearchIndex.html">SearchIndex</a></li>
-				<li class="active"><a href="class-vierbergenlars.Norch.ODM.SearchQuery.html">SearchQuery</a></li>
+				<li><a href="class-vierbergenlars.Norch.ODM.SearchQuery.html">SearchQuery</a></li>
 				<li><a href="class-vierbergenlars.Norch.ODM.SearchResult.html">SearchResult</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html">HydrationSettingsInterface</a></li>
+				<li class="active"><a href="class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html">HydrationSettingsInterface</a></li>
 				<li><a href="class-vierbergenlars.Norch.ODM.Indexable.html">Indexable</a></li>
 			</ul>
 
@@ -102,34 +102,23 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class SearchQuery</h1>
+	<h1>Interface HydrationSettingsInterface</h1>
 
 
 	<div class="description">
 	
-<p>A search query that automatically converts all search results to an hydrated
-object</p>
+<p>Interface for settings for the hydration of search results in objects</p>
 
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html"><span>vierbergenlars\Norch\SearchQuery\Query</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>vierbergenlars\Norch\ODM\SearchQuery</span></b>			
-			
-			
-		</dd>
-	</dl>
 
 
 
 
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-vierbergenlars.Norch.ODM.HydrationSettings.SingleObjectHydration.html">vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration</a>
+	</div>
 
 
 
@@ -140,69 +129,99 @@ object</p>
 		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Norch.html">Norch</a>\<a href="namespace-vierbergenlars.Norch.ODM.html">ODM</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.SearchQuery.html#8-48" title="Go to source code">vierbergenlars/Norch/ODM/SearchQuery.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#5-24" title="Go to source code">vierbergenlars/Norch/ODM/HydrationSettingsInterface.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="execute" id="_execute">
+	<tr data-order="getParameters" id="_getParameters">
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-vierbergenlars.Norch.ODM.SearchResult.html">vierbergenlars\Norch\ODM\SearchResult</a></code>
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-vierbergenlars.Norch.ODM.SearchQuery.html#38-47" title="Go to source code">execute</a>( )</code>
+		<a class="anchor" href="#_getParameters">#</a>
+		<code><a href="source-class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#11-16" title="Go to source code">getParameters</a>( <span>array <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Executes the search and hydrates the result</p>
+<p>Gets the properties to be injected in the object</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Executes the search and hydrates the result</p>
+<p>Gets the properties to be injected in the object</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$document</var></dt>
+					<dd><code>array</code><br>$document The document received from the search query</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-vierbergenlars.Norch.ODM.SearchResult.html">vierbergenlars\Norch\ODM\SearchResult</a></code></code><br />
+					<code>array</code><br>A map of object properties to values<br />
 				</div>
 
 
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_execute">vierbergenlars\Norch\SearchQuery\Query::execute()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getClass" id="_getClass">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getClass">#</a>
+		<code><a href="source-class-vierbergenlars.Norch.ODM.HydrationSettingsInterface.html#18-23" title="Go to source code">getClass</a>( <span>array <var>$document</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Gets the class name of the object that will be hydrated</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Gets the class name of the object that will be hydrated</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$document</var></dt>
+					<dd><code>array</code><br>$document The document received from the search query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>A fully qualified class name. (Should implement <code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>)<br />
+				</div>
+
+
+
 
 		</div>
 		</div></td>
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-vierbergenlars.Norch.SearchQuery.Query.html#methods">vierbergenlars\Norch\SearchQuery\Query</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#___construct">__construct()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setFacetFields">setFacetFields()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setLimit">setLimit()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setOffset">setOffset()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setQuery">setQuery()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setSearchFields">setSearchFields()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setSearchFilters">setSearchFilters()</a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#_setWeights">setWeights()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -215,20 +234,6 @@ object</p>
 
 
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-vierbergenlars.Norch.SearchQuery.Query.html#properties">vierbergenlars\Norch\SearchQuery\Query</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$facetFields"><var>$facetFields</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$limit"><var>$limit</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$offset"><var>$offset</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$query"><var>$query</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$searchFields"><var>$searchFields</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$searchFilters"><var>$searchFilters</var></a>, 
-			<a href="class-vierbergenlars.Norch.SearchQuery.Query.html#$weights"><var>$weights</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

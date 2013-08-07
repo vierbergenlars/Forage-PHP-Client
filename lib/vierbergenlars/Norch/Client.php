@@ -38,7 +38,7 @@ class Client
 
     /**
      * Gets the search index
-     * @return \vierbergenlars\Norch\SearchIndex\TransportAwareIndex
+     * @return \vierbergenlars\Norch\SearchIndex\Index
      */
     public function getIndex()
     {

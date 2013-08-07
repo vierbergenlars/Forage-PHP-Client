@@ -37,6 +37,6 @@ class searchhit extends \UnitTestCase
         $this->assertEqual($doc->getTitle(), $document['document']['title']);
         $this->assertEqual($doc->getBody(), $document['document']['body']);
         $this->assertEqual($doc->getCategories()->getArrayCopy(), $document['document']['categories']);
-        $this->assertEqual($doc->getId(), $document['document']['id']);
+        $this->assertEqual($doc->getIdReal(), $document['document']['id']);
     }
 }

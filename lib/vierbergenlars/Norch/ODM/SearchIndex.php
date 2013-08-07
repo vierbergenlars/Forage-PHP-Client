@@ -9,6 +9,7 @@ use vierbergenlars\Norch\SearchIndex\Index;
  */
 class SearchIndex extends Index
 {
+
     /**
      * {@inheritDoc}
      *
@@ -17,7 +18,7 @@ class SearchIndex extends Index
      */
     public function addDocument($document)
     {
-        if (!($document instanceof Indexable))
+        if(!($document instanceof Indexable))
             throw new \BadMethodCallException('Parameter 1 of ' . __METHOD__ . ' should be Indexable, ' . (is_object($document) ? get_class($document) : gettype($document)) . ' given.');
         parent::addDocument($document->toDocument());
         return $this;
@@ -32,11 +33,15 @@ class SearchIndex extends Index
      *      gets called to get the document id.
      * @return \vierbergenlars\Norch\ODM\SearchIndex
      */
-    public function removeDocument($document) {
-        if($document instanceof Indexable)
-            parent::removeDocument ($document->getId());
-        else
+    public function removeDocument($document)
+    {
+        if($document instanceof Indexable) {
+            $doc = $document->toDocument();
+            parent::removeDocument($doc['id']);
+        } else {
             parent::removeDocument($document);
+        }
         return $this;
     }
+
 }

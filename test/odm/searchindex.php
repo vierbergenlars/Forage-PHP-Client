@@ -21,7 +21,7 @@ class searchindex extends \UnitTestCase
         $index->addDocument($doc4);
 
         $index->removeDocument($doc3);
-        $index->removeDocument($doc4->getId());
+        $index->removeDocument($doc4->getIdReal());
         $index->removeDocument('qsfsf');
 
         $index->addFacetField('categories');
@@ -30,11 +30,13 @@ class searchindex extends \UnitTestCase
 
         $this->assertTrue($result);
         $this->assertEqual($transport->deleteCalls, 3);
-        $this->assertEqual($transport->deleteArguments, array($doc3->getId(),$doc4->getId(), 'qsfsf'));
+        $this->assertEqual($transport->deleteArguments, array($doc3->getIdReal(),
+            $doc4->getIdReal(), 'qsfsf'));
         $this->assertEqual($transport->indexCalls, 1);
         $this->assertEqual($transport->indexArguments, array(
             array(
-                $doc1->getId()=>array('title'=>'lolol', 'body'=>'sofsnfosq', 'categories'=>array('a','b'))
+                $doc1->getIdReal() => array('title' => 'lolol', 'body' => 'sofsnfosq',
+                    'categories' => array('a', 'b'))
             ),
             array('categories')
         ));

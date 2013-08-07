@@ -22,7 +22,8 @@ class DocumentObject implements Indexable
         $this->categories = new \ArrayObject($categories);
     }
 
-    public function getId() {
+    public function getIdReal()
+    {
         return $this->id;
     }
 

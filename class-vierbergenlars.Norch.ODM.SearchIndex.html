@@ -139,7 +139,7 @@
 		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Norch.html">Norch</a>\<a href="namespace-vierbergenlars.Norch.ODM.html">ODM</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#7-42" title="Go to source code">vierbergenlars/Norch/ODM/SearchIndex.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#7-47" title="Go to source code">vierbergenlars/Norch/ODM/SearchIndex.php</a><br />
 	</div>
 
 
@@ -157,7 +157,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#12-24" title="Go to source code">addDocument</a>( <span><code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code> <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#13-25" title="Go to source code">addDocument</a>( <span><code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code> <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
@@ -201,7 +201,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#26-41" title="Go to source code">removeDocument</a>( <span><code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>|string|integer <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Norch.ODM.SearchIndex.html#27-45" title="Go to source code">removeDocument</a>( <span><code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>|string|integer <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
@@ -219,8 +219,8 @@
 				<div class="list"><dl>
 					<dt><var>$document</var></dt>
 					<dd><code><code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>|string|integer</code><br>$document When the document to remove is given as a string or an integer, it is
-used as an id. If it is an <code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>, Indexable::getId() gets
-called to get the document id.</dd>
+used as an id. If it is an <code><a href="class-vierbergenlars.Norch.ODM.Indexable.html">vierbergenlars\Norch\ODM\Indexable</a></code>, <code><a href="class-vierbergenlars.Norch.ODM.Indexable.html#_toDocument">vierbergenlars\Norch\ODM\Indexable::toDocument()</a></code>
+gets called, and the document id will be determined from the returned array.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>

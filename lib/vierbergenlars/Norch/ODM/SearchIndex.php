@@ -29,9 +29,8 @@ class SearchIndex extends Index
      *
      * @param \vierbergenlars\Norch\ODM\Indexable|string|int $document
      *      When the document to remove is given as a string or an integer,
-     *      it is used as an id. If it is an {@link Indexable}, {@link Indexable::getId()}
-     *      gets called to get the document id.
-     * @return \vierbergenlars\Norch\ODM\SearchIndex
+     *      it is used as an id. If it is an {@link Indexable}, {@link Indexable::toDocument()}
+     *      gets called, and the document id will be determined from the returned array.     * @return \vierbergenlars\Norch\ODM\SearchIndex
      */
     public function removeDocument($document)
     {

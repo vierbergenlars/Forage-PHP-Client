@@ -20,7 +20,7 @@ class Compiler extends QueryBuilder
                 case Token::T_FIELD_NAME:
                     $nextToken = next($tokens);
                     if($nextToken === false)
-                        throw new ParseException('Unexpected end of token stream');
+                        throw new ParseException('Unexpected end of token stream', $queryExpr, strlen($queryExpr));
                     switch($nextToken->getType()) {
                         case Token::T_FIELD_VALUE:
                             $this->addFilter($token->getData(), $nextToken->getData());
@@ -32,10 +32,8 @@ class Compiler extends QueryBuilder
                             throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $token->getStartPosition());
                     }
                     break;
-                case Token::T_NONE: // This token should never occur
-                    throw new ParseException('Unexpected T_NONE (This is a lexer bug, please report it)', $queryExpr, $token->getStartPostition());
                 default:
-                    throw new ParseException('Unknown token (This is a lexer bug, please report it)', $queryExpr, $token->getStartPosition());
+                    throw new ParseException('Unexpected ' . Token::getName($token->getType()) . ' (This is a lexer bug, please report it)', $queryExpr, $token->getStartPosition());
             }
             next($tokens);
         }

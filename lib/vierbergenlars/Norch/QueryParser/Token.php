@@ -5,15 +5,15 @@ namespace vierbergenlars\Norch\QueryParser;
 class Token
 {
 
-    const T_NONE = 'T_NONE';
+    const T_NONE = 0;
 
-    const T_FIELD_NAME = 'T_FIELD_NAME';
+    const T_FIELD_NAME = 1;
 
-    const T_STRING = 'T_STRING';
+    const T_STRING = 2;
 
-    const T_FIELD_WEIGHT = 'T_FIELD_WEIGHT';
+    const T_FIELD_WEIGHT = 3;
 
-    const T_FIELD_VALUE = 'T_FIELD_VALUE';
+    const T_FIELD_VALUE = 4;
 
     protected $type;
 
@@ -56,6 +56,16 @@ class Token
     function getStartPosition()
     {
         return $this->startPos;
+    }
+
+    static function getName($token)
+    {
+        $refl = new \ReflectionClass(__CLASS__);
+        $constants = $refl->getConstants();
+        $token_name = array_search($token, $constants);
+        if($token_name)
+            return $token_name;
+        return 'UNKNOWN_TOKEN';
     }
 
 }

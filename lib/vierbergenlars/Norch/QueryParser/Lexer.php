@@ -23,6 +23,9 @@ class Lexer
         while($i < $len) {
             $c = $string[$i];
             switch($c) {
+                case '\\': // Escape character
+                    $current_token->addData($string[++$i]);
+                    break;
                 case ' ':
                     self::push($tokens, $current_token, $i);
                     break;
@@ -85,7 +88,9 @@ class Lexer
     static private function readEncString(Token $current_token, $string, &$i)
     {
         while(++$i < strlen($string)) {
-            if($string[$i] != '"') {
+            if($string[$i] == '\\') {
+                $current_token->addData($string[++$i]);
+            } else if($string[$i] != '"') {
                 $current_token->addData($string[$i]);
             } else {
                 break;

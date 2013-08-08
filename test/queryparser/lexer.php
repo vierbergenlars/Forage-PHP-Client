@@ -51,15 +51,13 @@ class lexer extends \UnitTestCase
         }
         $this->assertTrue($ex);
 
-        $tokens = L::tokenize('blabal "search query" "field": "long value"');
-        $this->assertEqual($tokens[0]->getType(), Token::T_STRING);
-        $this->assertEqual($tokens[0]->getData(), 'blabal');
-        $this->assertEqual($tokens[1]->getType(), Token::T_STRING);
-        $this->assertEqual($tokens[1]->getData(), 'search query');
-        $this->assertEqual($tokens[2]->getType(), Token::T_STRING);
-        $this->assertEqual($tokens[2]->getData(), 'field');
-        $this->assertEqual($tokens[3]->getType(), Token::T_FIELD_VALUE);
-        $this->assertEqual($tokens[3]->getData(), 'long value');
+        $ex = false;
+        try {
+            L::tokenize('blabal "search query" "field": "long value"');
+        } catch(ParseException $e) {
+            $ex = true;
+        }
+        $this->assertTrue($ex);
 
         $tokens = L::tokenize('blabal "search query" "field:" "long value"');
         $this->assertEqual($tokens[0]->getType(), Token::T_STRING);
@@ -87,16 +85,40 @@ class lexer extends \UnitTestCase
         $this->assertEqual($tokens[0]->getData(), 'field');
         $this->assertEqual($tokens[1]->getType(), Token::T_FIELD_WEIGHT);
         $this->assertEqual($tokens[1]->getData(), '25');
-        $this->assertEqual($tokens[2]->getType(), Token::T_FIELD_VALUE);
-        $this->assertEqual($tokens[2]->getData(), 'long');
+        $this->assertEqual($tokens[2]->getType(), Token::T_FIELD_NAME);
+        $this->assertEqual($tokens[2]->getData(), 'field');
+        $this->assertEqual($tokens[3]->getType(), Token::T_FIELD_VALUE);
+        $this->assertEqual($tokens[3]->getData(), 'long');
+        $this->assertEqual($tokens[4]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[4]->getData(), 'value');
+        $this->assertEqual($tokens[5]->getType(), Token::T_FIELD_NAME);
+        $this->assertEqual($tokens[5]->getData(), 'field2');
+        $this->assertEqual($tokens[6]->getType(), Token::T_FIELD_WEIGHT);
+        $this->assertEqual($tokens[6]->getData(), '-1');
+        $this->assertEqual($tokens[7]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[7]->getData(), 'sfi');
+
+        $tokens = L::tokenize('title^2 @body "bla bla"');
+        $this->assertEqual($tokens[0]->getType(), Token::T_FIELD_NAME);
+        $this->assertEqual($tokens[0]->getData(), 'title');
+        $this->assertEqual($tokens[1]->getType(), Token::T_FIELD_WEIGHT);
+        $this->assertEqual($tokens[1]->getData(), '2');
+        $this->assertEqual($tokens[2]->getType(), Token::T_FIELD_SEARCH);
+        $this->assertEqual($tokens[2]->getData(), 'body');
         $this->assertEqual($tokens[3]->getType(), Token::T_STRING);
-        $this->assertEqual($tokens[3]->getData(), 'value');
-        $this->assertEqual($tokens[4]->getType(), Token::T_FIELD_NAME);
-        $this->assertEqual($tokens[4]->getData(), 'field2');
-        $this->assertEqual($tokens[5]->getType(), Token::T_FIELD_WEIGHT);
-        $this->assertEqual($tokens[5]->getData(), '-1');
-        $this->assertEqual($tokens[6]->getType(), Token::T_STRING);
-        $this->assertEqual($tokens[6]->getData(), 'sfi');
+        $this->assertEqual($tokens[3]->getData(), 'bla bla');
+
+        $tokens = L::tokenize('title\^2 \@body "bla bla\" bla" title\: zz');
+        $this->assertEqual($tokens[0]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[0]->getData(), 'title^2');
+        $this->assertEqual($tokens[1]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[1]->getData(), '@body');
+        $this->assertEqual($tokens[2]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[2]->getData(), 'bla bla" bla');
+        $this->assertEqual($tokens[3]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[3]->getData(), 'title:');
+        $this->assertEqual($tokens[4]->getType(), Token::T_STRING);
+        $this->assertEqual($tokens[4]->getData(), 'zz');
     }
 
 }

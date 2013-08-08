@@ -45,6 +45,10 @@ class Lexer
                     if($i + 1 < $len && $string[$i + 1] == ':') // Peek one ahead. Duplicate T_FIELD_NAME token if a T_FIELD_VALUE follows.
                         $current_token = $field_token;
                     break;
+                case '@':
+                    if($current_token->getData() != null)
+                        throw new ParseException('Unexpected T_FIELD_SEARCH', $string, $i);
+                    $current_token->setTypeIfNone(Token::T_FIELD_SEARCH);
                     break;
                 case '"':
                     if($current_token->getData() == null) {

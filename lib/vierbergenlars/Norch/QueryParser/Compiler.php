@@ -32,12 +32,15 @@ class Compiler extends QueryBuilder
                             throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $token->getStartPosition());
                     }
                     break;
+                case Token::T_FIELD_SEARCH:
+                    $this->addSearchField($token->getData());
+                    break;
                 default:
                     throw new ParseException('Unexpected ' . Token::getName($token->getType()) . ' (This is a lexer bug, please report it)', $queryExpr, $token->getStartPosition());
             }
             next($tokens);
         }
-        $this->setSearchQuery($searchQuery);
+        $this->setSearchQuery(substr($searchQuery, 1));
         return $this;
     }
 

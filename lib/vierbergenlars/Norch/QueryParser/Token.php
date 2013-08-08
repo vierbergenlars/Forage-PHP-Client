@@ -15,6 +15,8 @@ class Token
 
     const T_FIELD_VALUE = 4;
 
+    const T_FIELD_SEARCH = 5;
+
     protected $type;
 
     protected $data = null;

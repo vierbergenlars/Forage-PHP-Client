@@ -1,0 +1,98 @@
+<?php
+
+namespace vierbergenlars\Norch\QueryParser;
+
+class Lexer
+{
+
+    /**
+     * This class should not be instanciated
+     */
+    private function __construct()
+    {
+        ;
+    }
+
+    public static function tokenize($string)
+    {
+        $len = strlen($string);
+        $tokens = array();
+
+        $current_token = new Token(Token::T_NONE, 0);
+        $i = 0;
+        while($i < $len) {
+            $c = $string[$i];
+            switch($c) {
+                case ' ':
+                    self::push($tokens, $current_token, $i);
+                    break;
+                case ':':
+                    if($current_token->getData() == null)
+                        throw new ParseException('Unexpected T_FIELD_VALUE', $string, $i);
+                    if($current_token->getType() == Token::T_NONE)
+                        $current_token->setType(Token::T_FIELD_NAME);
+                    self::push($tokens, $current_token, $i);
+                    $current_token->setType(Token::T_FIELD_VALUE);
+                    break;
+                case '^':
+                    if($current_token->getData() == null)
+                        throw new ParseException('Unexpected T_FIELD_WEIGHT', $string, $i);
+                    if($current_token->getType() == Token::T_NONE)
+                        $current_token->setType(Token::T_FIELD_NAME);
+                    self::push($tokens, $current_token, $i);
+                    $current_token->setType(Token::T_FIELD_WEIGHT);
+                    self::readInt($current_token, $string, $i);
+                    break;
+                case '"':
+                    if($current_token->getData() == null) {
+                        if($current_token->getType() == Token::T_NONE)
+                            $current_token->setType(Token::T_STRING);
+                        self::readEncString($current_token, $string, $i);
+                    } else {
+                        throw new ParseException('Unexpected T_STRING', $string, $i);
+                    }
+                    break;
+                default:
+                    $current_token->addData($c);
+            }
+            $i++;
+        }
+        self::push($tokens, $current_token, $i);
+        return $tokens;
+    }
+
+    static private function push(&$tokens, &$current_token, $i)
+    {
+        if($current_token->getData() === null)
+            return;
+        if($current_token->getType() == Token::T_NONE)
+            $current_token->setType(Token::T_STRING);
+        $tokens[] = $current_token;
+        $current_token = new Token(Token::T_NONE, $i);
+    }
+
+    static private function readEncString(Token $current_token, $string, &$i)
+    {
+        while(++$i < strlen($string)) {
+            if($string[$i] != '"') {
+                $current_token->addData($string[$i]);
+            } else {
+                break;
+            }
+        }
+    }
+
+    static private function readInt(Token $current_token, $string, &$i)
+    {
+        while(++$i < strlen($string)) {
+            if(in_array($string[$i], array('0', '1', '2', '3', '4', '5', '6', '7',
+                        '8', '9', '-'), true)) {
+                $current_token->addData($string[$i]);
+            } else {
+                $i--;
+                break;
+            }
+        }
+    }
+
+}

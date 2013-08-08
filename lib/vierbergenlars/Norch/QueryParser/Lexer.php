@@ -37,9 +37,14 @@ class Lexer
                     if($current_token->getData() == null)
                         throw new ParseException('Unexpected T_FIELD_WEIGHT', $string, $i);
                     $current_token->setTypeIfNone(Token::T_FIELD_NAME);
+                    $field_token = $current_token;
                     self::push($tokens, $current_token, $i);
                     $current_token->setType(Token::T_FIELD_WEIGHT);
                     self::readInt($current_token, $string, $i);
+                    self::push($tokens, $current_token, $i);
+                    if($i + 1 < $len && $string[$i + 1] == ':') // Peek one ahead. Duplicate T_FIELD_NAME token if a T_FIELD_VALUE follows.
+                        $current_token = $field_token;
+                    break;
                     break;
                 case '"':
                     if($current_token->getData() == null) {

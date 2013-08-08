@@ -12,32 +12,32 @@ class Compiler extends QueryBuilder
     {
         $tokens = Lexer::tokenize($queryExpr);
         $searchQuery = '';
-        $currentField = null;
-        foreach($tokens as $token) {
+        while(false !== ($token = current($tokens))) {
             switch($token->getType()) {
                 case Token::T_STRING:
                     $searchQuery.= ' ' . $token->getData();
-                    $currentField = null;
                     break;
                 case Token::T_FIELD_NAME:
-                    $currentField = $token->getData();
-                    break;
-                case Token::T_FIELD_WEIGHT:
-                    if($currentField === null)
-                        throw new ParseException('Unexpected T_FIELD_WEIGHT', $queryExpr, $token->getStartPosition());
-                    $this->addWeight($currentField, $token->getData());
-                    break;
-                case Token::T_FIELD_VALUE:
-                    if($currentField === null)
-                        throw new ParseException('Unexpected T_FIELD_VALUE', $queryExpr, $token->getStartPosition());
-                    $this->addFilter($currentField, $token->getData());
-                    $currentField = null;
+                    $nextToken = next($tokens);
+                    if($nextToken === false)
+                        throw new ParseException('Unexpected end of token stream');
+                    switch($nextToken->getType()) {
+                        case Token::T_FIELD_VALUE:
+                            $this->addFilter($token->getData(), $nextToken->getData());
+                            break;
+                        case Token::T_FIELD_WEIGHT:
+                            $this->addWeight($token->getData(), $nextToken->getData());
+                            break;
+                        default:
+                            throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $token->getStartPosition());
+                    }
                     break;
                 case Token::T_NONE: // This token should never occur
                     throw new ParseException('Unexpected T_NONE (This is a lexer bug, please report it)', $queryExpr, $token->getStartPostition());
                 default:
                     throw new ParseException('Unknown token (This is a lexer bug, please report it)', $queryExpr, $token->getStartPosition());
             }
+            next($tokens);
         }
         $this->setSearchQuery($searchQuery);
         return $this;

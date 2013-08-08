@@ -28,15 +28,19 @@ class Lexer
                     break;
                 case ':':
                     if($current_token->getData() == null)
-                        throw new ParseException('Unexpected T_FIELD_VALUE', $string, $i);
-                    $current_token->setTypeIfNone(Token::T_FIELD_NAME);
+                        throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
+                    if(!$current_token->isTypeNoneOr(Token::T_FIELD_NAME))
+                        throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($current_token->getType()), $string, $i);
+                    $current_token->setType(Token::T_FIELD_NAME);
                     self::push($tokens, $current_token, $i);
                     $current_token->setType(Token::T_FIELD_VALUE);
                     break;
                 case '^':
                     if($current_token->getData() == null)
-                        throw new ParseException('Unexpected T_FIELD_WEIGHT', $string, $i);
-                    $current_token->setTypeIfNone(Token::T_FIELD_NAME);
+                        throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
+                    if(!$current_token->isTypeNoneOr(Token::T_FIELD_NAME))
+                        throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($current_token->getType()), $string, $i);
+                    $current_token->setType(Token::T_FIELD_NAME);
                     $field_token = $current_token;
                     self::push($tokens, $current_token, $i);
                     $current_token->setType(Token::T_FIELD_WEIGHT);
@@ -47,13 +51,15 @@ class Lexer
                     break;
                 case '@':
                     if($current_token->getData() != null)
-                        throw new ParseException('Unexpected T_FIELD_SEARCH', $string, $i);
-                    $current_token->setTypeIfNone(Token::T_FIELD_SEARCH);
+                        throw new ParseException('Expected nothing, got ' . Token::getName($current_token->getType()), $string, $i);
+                    $current_token->setType(Token::T_FIELD_SEARCH);
                     break;
                 case '"':
                     if($current_token->getData() == null) {
                         $current_token->setTypeIfNone(Token::T_STRING);
                         self::readEncString($current_token, $string, $i);
+                        if($i + 1 < $len && $string[$i + 1] != ' ') // Peek one ahead. Should be empty
+                            throw new ParseException('Unexpected T_STRING', $string, $i + 1);
                     } else {
                         throw new ParseException('Unexpected T_STRING', $string, $i);
                     }

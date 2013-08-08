@@ -45,6 +45,11 @@ class Token
             $this->type = $type;
     }
 
+    function isTypeNoneOr($type)
+    {
+        return ($this->type == self::T_NONE || $this->type == $type);
+    }
+
     function getType()
     {
         return $this->type;

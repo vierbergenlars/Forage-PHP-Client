@@ -29,24 +29,21 @@ class Lexer
                 case ':':
                     if($current_token->getData() == null)
                         throw new ParseException('Unexpected T_FIELD_VALUE', $string, $i);
-                    if($current_token->getType() == Token::T_NONE)
-                        $current_token->setType(Token::T_FIELD_NAME);
+                    $current_token->setTypeIfNone(Token::T_FIELD_NAME);
                     self::push($tokens, $current_token, $i);
                     $current_token->setType(Token::T_FIELD_VALUE);
                     break;
                 case '^':
                     if($current_token->getData() == null)
                         throw new ParseException('Unexpected T_FIELD_WEIGHT', $string, $i);
-                    if($current_token->getType() == Token::T_NONE)
-                        $current_token->setType(Token::T_FIELD_NAME);
+                    $current_token->setTypeIfNone(Token::T_FIELD_NAME);
                     self::push($tokens, $current_token, $i);
                     $current_token->setType(Token::T_FIELD_WEIGHT);
                     self::readInt($current_token, $string, $i);
                     break;
                 case '"':
                     if($current_token->getData() == null) {
-                        if($current_token->getType() == Token::T_NONE)
-                            $current_token->setType(Token::T_STRING);
+                        $current_token->setTypeIfNone(Token::T_STRING);
                         self::readEncString($current_token, $string, $i);
                     } else {
                         throw new ParseException('Unexpected T_STRING', $string, $i);
@@ -65,8 +62,7 @@ class Lexer
     {
         if($current_token->getData() === null)
             return;
-        if($current_token->getType() == Token::T_NONE)
-            $current_token->setType(Token::T_STRING);
+        $current_token->setTypeIfNone(Token::T_STRING);
         $tokens[] = $current_token;
         $current_token = new Token(Token::T_NONE, $i);
     }

@@ -4,13 +4,15 @@ namespace test\odm;
 
 use vierbergenlars\Norch\ODM\SearchIndex as Index;
 use test\searchindex\TransportMock;
+use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchindex extends \UnitTestCase
 {
     function testSearchIndex()
     {
         $transport = new TransportMock;
-        $index = new Index($transport);
+        $hydrationSettings = new SingleObjectHydration('test\odm\DocumentObject');
+        $index = new Index($transport, $hydrationSettings);
         $doc1 = new DocumentObject('lolol', 'sofsnfosq', array('a','b'));
         $index->addDocument($doc1);
         $doc2 = clone $doc1;

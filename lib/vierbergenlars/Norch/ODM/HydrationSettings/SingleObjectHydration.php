@@ -3,6 +3,7 @@
 namespace vierbergenlars\Norch\ODM\HydrationSettings;
 
 use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
+use vierbergenlars\Norch\ODM\Indexable;
 
 /**
  * A simple hydration strategy that injects all parameters as-is in the object.
@@ -44,6 +45,17 @@ class SingleObjectHydration implements HydrationSettingsInterface
     public function getParameters(array $document)
     {
         return $document;
+    }
+
+    /**
+     * {@InheritDoc}
+     * @internal
+     */
+    public function getDocument(Indexable $document)
+    {
+        if(!is_a($document, $this->className))
+            throw new \LogicException('Document should be of type ' . $this->className . ', got ' . get_class($document));
+        return $document->toDocument();
     }
 
 }

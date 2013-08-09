@@ -44,6 +44,6 @@ class DocumentMapper extends Client
      * @return \vierbergenlars\Norch\ODM\SearchIndex
      */
     public function getIndex() {
-        return new SearchIndex($this->transport);
+        return new SearchIndex($this->transport, $this->hydrationSettings);
     }
 }

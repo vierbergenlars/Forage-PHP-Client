@@ -65,6 +65,11 @@ class Token
         return $this->startPos;
     }
 
+    function setStartPosition($startPos)
+    {
+        $this->startPos = $startPos;
+    }
+
     static function getName($token)
     {
         $refl = new \ReflectionClass(__CLASS__);

@@ -55,6 +55,7 @@ class Lexer
                 case '@':
                     if($current_token->getData() != null)
                         throw new ParseException('Expected nothing, got ' . Token::getName($current_token->getType()), $string, $i);
+                    $current_token->setStartPosition($i);
                     $current_token->setType(Token::T_FIELD_SEARCH);
                     break;
                 case '"':
@@ -78,8 +79,10 @@ class Lexer
 
     static private function push(&$tokens, &$current_token, $i)
     {
-        if($current_token->getData() === null)
+        if($current_token->getData() === null) {
+            $current_token->setStartPosition($i);
             return;
+        }
         $current_token->setTypeIfNone(Token::T_STRING);
         $tokens[] = $current_token;
         $current_token = new Token(Token::T_NONE, $i);

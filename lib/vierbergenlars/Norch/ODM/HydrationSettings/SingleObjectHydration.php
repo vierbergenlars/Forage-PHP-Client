@@ -49,9 +49,10 @@ class SingleObjectHydration implements HydrationSettingsInterface
 
     /**
      * {@InheritDoc}
+     * @param \vierbergenlars\Norch\ODM\Indexable $document
      * @internal
      */
-    public function getDocument(Indexable $document)
+    public function getDocument($document)
     {
         if(!is_a($document, $this->className))
             throw new \LogicException('Document should be of type ' . $this->className . ', got ' . get_class($document));

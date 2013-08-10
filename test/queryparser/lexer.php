@@ -59,6 +59,14 @@ class lexer extends \UnitTestCase
         }
         $this->assertTrue($ex);
 
+        $ex = false;
+        try {
+            L::tokenize('@field: sfnsq');
+        } catch(ParseException $e) {
+            $ex = true;
+        }
+        $this->assertTrue($ex);
+
         $tokens = L::tokenize('blabal "search query" "field:" "long value"');
         $this->assertEqual($tokens[0]->getType(), Token::T_STRING);
         $this->assertEqual($tokens[0]->getData(), 'blabal');

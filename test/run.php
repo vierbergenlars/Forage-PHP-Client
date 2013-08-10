@@ -45,6 +45,7 @@ class NorchQueryParserTests extends \TestSuite
     {
         parent::__construct('Norch QueryParser tests');
         $this->add(new queryparser\lexer);
+        $this->add(new queryparser\compiler);
     }
 
 }

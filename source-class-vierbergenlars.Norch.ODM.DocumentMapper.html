@@ -8,7 +8,7 @@
 	<title>File vierbergenlars/Norch/ODM/DocumentMapper.php | Norch-PHP-Client</title>
 
 	<script type="text/javascript" src="resources/combined.js?45490431"></script>
-	<script type="text/javascript" src="elementlist.js?3119979473"></script>
+	<script type="text/javascript" src="elementlist.js?251381186"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,6 +33,8 @@
 				<li><a href="namespace-vierbergenlars.Norch.ODM.HydrationSettings.html">HydrationSettings</a>
 						</li>
 							</ul></li>
+				<li><a href="namespace-vierbergenlars.Norch.QueryParser.html">QueryParser</a>
+						</li>
 				<li><a href="namespace-vierbergenlars.Norch.SearchIndex.html">SearchIndex</a>
 						</li>
 				<li><a href="namespace-vierbergenlars.Norch.SearchQuery.html">SearchQuery</a>
@@ -149,7 +151,7 @@
 </span></span><span id="44" class="l"><a class="l" href="#44">44: </a><span class="php-comment">     * @return \vierbergenlars\Norch\ODM\SearchIndex
 </span></span><span id="45" class="l"><a class="l" href="#45">45: </a><span class="php-comment">     */</span>
 </span><span id="46" class="l"><a class="l" href="#46">46: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getIndex" href="#_getIndex">getIndex</a>() {
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> SearchIndex(<span class="php-var">$this</span>-&gt;transport);
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> SearchIndex(<span class="php-var">$this</span>-&gt;transport, <span class="php-var">$this</span>-&gt;hydrationSettings);
 </span><span id="48" class="l"><a class="l" href="#48">48: </a>    }
 </span><span id="49" class="l"><a class="l" href="#49">49: </a>}
 </span><span id="50" class="l"><a class="l" href="#50">50: </a></span></code></pre>

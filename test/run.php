@@ -37,3 +37,15 @@ class NorchODMTests extends \TestSuite
         $this->add(new odm\documentmapper);
     }
 }
+
+class NorchQueryParserTests extends \TestSuite
+{
+
+    public function __construct()
+    {
+        parent::__construct('Norch QueryParser tests');
+        $this->add(new queryparser\lexer);
+        $this->add(new queryparser\compiler);
+    }
+
+}

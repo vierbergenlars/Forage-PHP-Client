@@ -2,6 +2,9 @@
 
 namespace vierbergenlars\Norch\QueryParser;
 
+/**
+ * @internal
+ */
 class Lexer
 {
 
@@ -13,6 +16,12 @@ class Lexer
         ;
     }
 
+    /**
+     * Tokenizes a string
+     * @param string $string The string to tokenzie
+     * @return array An array of {@link Token}s
+     * @throws ParseException
+     */
     public static function tokenize($string)
     {
         $len = strlen($string);
@@ -77,6 +86,18 @@ class Lexer
         return $tokens;
     }
 
+    /**
+     * Puts the current token on the stack and creates a new one.
+     *
+     * Reuses the token if it contains no data.
+     * Sets it's type to {@link Token::T_STRING} if it is {@link Token::T_NONE}.
+     * Put the current token on the stack.
+     * Create a new {@link Token::T_NONE} token and set it as current.
+     *
+     * @param array $tokens
+     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param int $i The current position in the string being tokenized
+     */
     static private function push(&$tokens, &$current_token, $i)
     {
         if($current_token->getData() === null) {
@@ -88,6 +109,12 @@ class Lexer
         $current_token = new Token(Token::T_NONE, $i);
     }
 
+    /**
+     * Reads an encapsulated (quoted) string
+     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param string $string The string being tokenized
+     * @param int $i The current position in the string being tokenized
+     */
     static private function readEncString(Token $current_token, $string, &$i)
     {
         while(++$i < strlen($string)) {
@@ -101,6 +128,12 @@ class Lexer
         }
     }
 
+    /**
+     * Reads an integer
+     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param string $string The string being tokenized
+     * @param int $i The current position in the string being tokenized
+     */
     static private function readInt(Token $current_token, $string, &$i)
     {
         while(++$i < strlen($string)) {

@@ -5,6 +5,9 @@ namespace vierbergenlars\Norch\QueryParser;
 use vierbergenlars\Norch\SearchQuery\QueryBuilder;
 use vierbergenlars\Norch\QueryParser\Token;
 
+/**
+ * Compiles a string query to an executable query.
+ */
 class Compiler
 {
 
@@ -33,8 +36,8 @@ class Compiler
     protected $allowedTokens = array();
 
     /**
-     *
-     * @param \vierbergenlars\Norch\SearchQuery\QueryBuilder $queryBuilder
+     * Create a new compiler
+     * @param \vierbergenlars\Norch\SearchQuery\QueryBuilder $queryBuilder The query builder to compile the query on
      */
     public function __construct(QueryBuilder $queryBuilder)
     {

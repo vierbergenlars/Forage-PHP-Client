@@ -34,7 +34,7 @@ class searchresult extends \UnitTestCase
 
         $this->assertEqual($result->count(),0);
         $this->assertEqual($result->getHits(), array());
-        $this->assertEqual(count($result->getFacets()), 1);
+        $this->assertEqual(count($result->getFacets()), 0); // Empty facets are not founted
         $this->assertEqual($result->getTotalHits(), 0);
 
         foreach($result as $hit)
@@ -44,9 +44,7 @@ class searchresult extends \UnitTestCase
 
         foreach($result->getFacets() as $facet)
         {
-            $this->assertEqual($facet->getField(), 'categories');
-            foreach($facet as $value=>$number)
-                $this->fail('The facet should not contain anything to facet on');
+            $this->fail('There should be nothing to facet on.');
         }
     }
 
@@ -75,6 +73,9 @@ class searchresult extends \UnitTestCase
       "funny": 1,
       "dog": 1,
       "random": 1
+    },
+    "random_field": {
+        "useless":5
     }
   },
   "hits": [
@@ -131,8 +132,8 @@ class searchresult extends \UnitTestCase
         {
             $this->assertIsA($facet, 'vierbergenlars\Norch\SearchResult\Facet');
             $this->assertEqual($facet->getField(), 'categories');
-            foreach($facet as $value=>$number) {
-                $this->assertTrue(is_string($value), 'The value of a facet should be string.');
+            foreach($facet as $field => $number) {
+                $this->assertTrue(is_string($field), 'The field of a facet should be string.');
                 $this->assertTrue(is_integer($number), 'The number of a facet should be integer.');
                 $this->assertEqual($number, 1); // They all happen to only occur once
             }

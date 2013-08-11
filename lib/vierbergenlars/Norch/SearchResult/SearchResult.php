@@ -44,8 +44,9 @@ class SearchResult extends \ArrayObject
         $this->totalHits = $result_array['totalHits'];
         $facetClass = $this->facetClass;
         $hitClass = $this->hitClass;
-        foreach($result_array['facets'] as $field=>$results) {
-            $this->facets[] = new $facetClass($field, $results);
+        foreach($result_array['facets'] as $field => $results) {
+            if(count($results) > 1) // Don't add facets that have at most one result, it's pointless to facet on those.
+                $this->facets[] = new $facetClass($field, $results);
         }
         $hits = array();
         foreach($result_array['hits'] as $hit) {

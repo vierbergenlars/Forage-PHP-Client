@@ -2,13 +2,10 @@
 
 namespace vierbergenlars\Norch\ODM\HydrationSettings;
 
-use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
-use vierbergenlars\Norch\ODM\Indexable;
-
 /**
  * A simple hydration strategy that injects all parameters as-is in the object.
  */
-class SingleObjectHydration implements HydrationSettingsInterface
+class SingleObjectHydration extends DeferHydration
 {
     /**
      * The class name of the object that will be injected

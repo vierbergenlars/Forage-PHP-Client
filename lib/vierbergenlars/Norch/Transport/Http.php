@@ -111,29 +111,29 @@ class Http implements TransportInterface
         array $weight       = null
     )
     {
-        $querystring = '?q='.$query;
+        $querystring = '?q=' . urlencode($query);
         if($searchFields) {
             foreach($searchFields as $field)
-                $querystring.='&searchFields[]='.$field;
+                $querystring.='&searchFields[]=' . urlencode($field);
         }
         if($facets) {
-            $querystring.='&facets='.implode(',', $facets);
+            $querystring.='&facets=' . urlencode(implode(',', $facets));
         }
         if($filters) {
             foreach($filters as $name=>$values)
                 foreach($values as $value)
-                    $querystring.='&filter['.$name.'][]='.$value;
+                    $querystring.='&filter[' . urlencode($name) . '][]=' . urlencode($value);
         }
         if($offset) {
-            $querystring .= '&offset='.$offset;
+            $querystring .= '&offset=' . urlencode($offset);
         }
         if($pagesize != 10) {
-            $querystring .= '&pagesize='.$pagesize;
+            $querystring .= '&pagesize=' . urlencode($pagesize);
         }
         if($weight) {
             foreach($weight as $name=>$values)
                 foreach($values as $value)
-                    $querystring.='&weight['.$name.'][]='.$value;
+                    $querystring.='&weight[' . urlencode($name) . '][]=' . urlencode($value);
         }
 
 

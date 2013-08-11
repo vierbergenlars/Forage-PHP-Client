@@ -67,6 +67,9 @@ class http extends \UnitTestCase
             'id'=>1
         ));
         $this->assertNotNull($lolSearch['hits'][0]['score']);
+
+        $lolCatSearch = $this->transport->search('Lol Cat');
+        $this->assertEqual($lolCatSearch['totalHits'], 2);
     }
 
     function testFieldedSearch()

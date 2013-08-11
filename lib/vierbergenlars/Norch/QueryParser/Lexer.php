@@ -33,7 +33,9 @@ class Lexer
             $c = $string[$i];
             switch($c) {
                 case '\\': // Escape character
-                    $current_token->addData($string[++$i]);
+                    if(++$i >= $len)
+                        throw new ParseException('Unexpected end of query', $string, $i);
+                    $current_token->addData($string[$i]);
                     break;
                 case ' ':
                     self::push($tokens, $current_token, $i);

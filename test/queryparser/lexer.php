@@ -21,6 +21,14 @@ class lexer extends \UnitTestCase
 
         $ex = false;
         try {
+            L::tokenize('qfnqsf\\');
+        } catch(ParseException $e) {
+            $ex = true;
+        }
+        $this->assertTrue($ex);
+
+        $ex = false;
+        try {
             L::tokenize('blabal "sea"rch query"field: "long value"');
         } catch(ParseException $e) {
             $ex = true;

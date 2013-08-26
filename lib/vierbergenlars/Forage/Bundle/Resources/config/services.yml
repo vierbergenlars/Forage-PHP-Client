@@ -1,0 +1,25 @@
+parameters:
+    vierbergenlars.forage.class: vierbergenlars\Forage\Client
+    vierbergenlars.forage.transport.http.class: vierbergenlars\Forage\Transport\HttpTransport
+    vierbergenlars.forage.transport.location: "http://localhost:3000/"
+    vierbergenlars.forage.dm.class: vierbergenlars\Forage\ODM\DocumentMapper
+    vierbergenlars.forage.dm.hydrationsettings.class: vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration
+
+services:
+    vierbergenlars.forage:
+        class: %vierbergenlars.forage.class%
+        arguments: ["@vierbergenlars.forage.transport"]
+
+    vierbergenlars.forage.transport:
+        class: %vierbergenlars.forage.transport.class%
+        arguments: [%vierbergenlars.forage.transport.location%]
+
+    vierbergenlars.forage.dm:
+        class: %vierbergenlars.forage.dm.class%
+        arguments: ["@vierbergenlars.forage.transport", "@vierbergenlars.forage.dm.hydrationsettings"]
+
+    vierbergenlars.forage.dm.hydrationsettings:
+        class: %vierbergenlars.forage.dm.hydrationsettings.class%
+        public: false
+
+

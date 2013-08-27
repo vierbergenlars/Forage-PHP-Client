@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\SearchResult;
+namespace vierbergenlars\Forage\SearchResult;
 
 /**
  * A search result
@@ -25,13 +25,13 @@ class SearchResult extends \ArrayObject
      * The class that is instanciated for a hit
      * @var string
      */
-    protected $hitClass = '\vierbergenlars\Norch\SearchResult\Hit';
+    protected $hitClass = '\vierbergenlars\Forage\SearchResult\Hit';
 
     /**
      * The class that is instanciated for a facet
      * @var string
      */
-    protected $facetClass = '\vierbergenlars\Norch\SearchResult\Facet';
+    protected $facetClass = '\vierbergenlars\Forage\SearchResult\Facet';
 
     /**
      * Creates a new SearchResult object

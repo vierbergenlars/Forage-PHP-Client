@@ -9,7 +9,7 @@ License: [MIT](https://github.com/vierbergenlars/Norch-PHP-Client/blob/master/LI
 
 ## Installation
 
-`$ composer require vierbergenlars/norch-client:*`
+`$ composer require vierbergenlars/forage-client:*`
 
 ## Usage
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\ODM\HydrationSettings;
+namespace vierbergenlars\Forage\ODM\HydrationSettings;
 
 /**
  * A simple hydration strategy that injects all parameters as-is in the object.
@@ -15,14 +15,14 @@ class SingleObjectHydration extends DeferHydration
 
     /**
      * Creates a new simple hydration strategy
-     * @param string $className The class that will be hydrated (should implement {@link vierbergenlars\Norch\ODM\Indexable})
+     * @param string $className The class that will be hydrated (should implement {@link vierbergenlars\Forage\ODM\Indexable})
      * @throws \LogicException
      */
     public function __construct($className)
     {
         $interfaces = class_implements($className);
-        if (!isset($interfaces['vierbergenlars\Norch\ODM\Indexable']))
-            throw new \LogicException($className . ' should implement interface vierbergenlars\Norch\ODM\Indexable');
+        if (!isset($interfaces['vierbergenlars\Forage\ODM\Indexable']))
+            throw new \LogicException($className . ' should implement interface vierbergenlars\Forage\ODM\Indexable');
         $this->className = $className;
     }
 
@@ -46,7 +46,7 @@ class SingleObjectHydration extends DeferHydration
 
     /**
      * {@InheritDoc}
-     * @param \vierbergenlars\Norch\ODM\Indexable $document
+     * @param \vierbergenlars\Forage\ODM\Indexable $document
      * @internal
      */
     public function getDocument($document)

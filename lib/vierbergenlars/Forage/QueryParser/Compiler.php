@@ -1,9 +1,9 @@
 <?php
 
-namespace vierbergenlars\Norch\QueryParser;
+namespace vierbergenlars\Forage\QueryParser;
 
-use vierbergenlars\Norch\SearchQuery\QueryBuilder;
-use vierbergenlars\Norch\QueryParser\Token;
+use vierbergenlars\Forage\SearchQuery\QueryBuilder;
+use vierbergenlars\Forage\QueryParser\Token;
 
 /**
  * Compiles a string query to an executable query.
@@ -13,7 +13,7 @@ class Compiler
 
     /**
      * The query builder the query gets inserted to
-     * @var \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @var \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     protected $queryBuilder;
 
@@ -37,7 +37,7 @@ class Compiler
 
     /**
      * Create a new compiler
-     * @param \vierbergenlars\Norch\SearchQuery\QueryBuilder $queryBuilder The query builder to compile the query on
+     * @param \vierbergenlars\Forage\SearchQuery\QueryBuilder $queryBuilder The query builder to compile the query on
      */
     public function __construct(QueryBuilder $queryBuilder)
     {
@@ -47,7 +47,7 @@ class Compiler
     /**
      * Sets the allowed field names
      * @param array $fieldNames
-     * @return \vierbergenlars\Norch\QueryParser\Compiler
+     * @return \vierbergenlars\Forage\QueryParser\Compiler
      */
     public function setAllowedFieldNames(array $fieldNames)
     {
@@ -68,7 +68,7 @@ class Compiler
     /**
      * Sets the allowed search fields
      * @param array $fieldNames
-     * @return \vierbergenlars\Norch\QueryParser\Compiler
+     * @return \vierbergenlars\Forage\QueryParser\Compiler
      */
     public function setAllowedSearchFields(array $fieldNames)
     {
@@ -89,7 +89,7 @@ class Compiler
     /**
      * Sets the allowed tokens
      * @param array $tokens
-     * @return \vierbergenlars\Norch\QueryParser\Compiler
+     * @return \vierbergenlars\Forage\QueryParser\Compiler
      */
     public function setAllowedTokens(array $tokens)
     {
@@ -99,7 +99,7 @@ class Compiler
 
     /**
      * Checks if a token is allowed
-     * @param \vierbergenlars\Norch\QueryParser\Token $token
+     * @param \vierbergenlars\Forage\QueryParser\Token $token
      * @return bool
      */
     protected function isAllowedToken(Token $token)
@@ -110,7 +110,7 @@ class Compiler
     /**
      * Compiles the search query
      * @param string $queryExpr
-     * @return \vierbergenlars\Norch\QueryParser\Compiler
+     * @return \vierbergenlars\Forage\QueryParser\Compiler
      * @throws ParseException
      */
     public function compileQuery($queryExpr)
@@ -159,7 +159,7 @@ class Compiler
 
     /**
      * Gets the query builder
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function getQueryBuilder()
     {
@@ -168,7 +168,7 @@ class Compiler
 
     /**
      * Gets the query
-     * @return vierbergenlars\Norch\SearchQuery\Query
+     * @return vierbergenlars\Forage\SearchQuery\Query
      */
     public function getQuery()
     {

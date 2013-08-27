@@ -1,23 +1,23 @@
 <?php
 
-namespace vierbergenlars\Norch\Transport;
+namespace vierbergenlars\Forage\Transport;
 
 /**
- * HTTP as transport layer for Norch queries
+ * HTTP as transport layer for Forage queries
  *
  * {@inheritDoc}
  */
 class Http implements TransportInterface
 {
     /**
-     * The path to the place where Norch is listening
+     * The path to the place where Forage is listening
      * @var string
      */
     private $base_path;
 
     /**
      * Creates a new HTTP transport layer
-     * @param string $base_path The base path of the Norch server
+     * @param string $base_path The base path of the Forage server
      */
     public function __construct($base_path = 'http://localhost:3000/')
     {

@@ -2,7 +2,7 @@
 
 namespace test\searchindex;
 
-use vierbergenlars\Norch\SearchIndex\Index as SearchIndex;
+use vierbergenlars\Forage\SearchIndex\Index as SearchIndex;
 
 class index extends \UnitTestCase
 {

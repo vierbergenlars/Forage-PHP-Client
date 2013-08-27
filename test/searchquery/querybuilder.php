@@ -2,8 +2,8 @@
 
 namespace test\searchquery;
 
-use vierbergenlars\Norch\SearchQuery\QueryBuilder as SearchQueryBuilder;
-use vierbergenlars\Norch\SearchQuery\Query as SearchQuery;
+use vierbergenlars\Forage\SearchQuery\QueryBuilder as SearchQueryBuilder;
+use vierbergenlars\Forage\SearchQuery\Query as SearchQuery;
 
 class querybuilder extends \UnitTestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\SearchResult;
+namespace vierbergenlars\Forage\SearchResult;
 
 /**
  * A search hit

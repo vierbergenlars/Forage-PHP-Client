@@ -2,7 +2,7 @@
 
 namespace test\transport;
 
-use vierbergenlars\Norch\Transport\Http as HttpTransport;
+use vierbergenlars\Forage\Transport\Http as HttpTransport;
 
 class http extends \UnitTestCase
 {

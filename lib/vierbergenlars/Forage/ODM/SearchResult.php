@@ -1,21 +1,21 @@
 <?php
 
-namespace vierbergenlars\Norch\ODM;
+namespace vierbergenlars\Forage\ODM;
 
-use vierbergenlars\Norch\SearchResult\SearchResult as Result;
-use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
+use vierbergenlars\Forage\SearchResult\SearchResult as Result;
+use vierbergenlars\Forage\ODM\HydrationSettingsInterface;
 
 /**
  * A hydrateable search result
  */
 class SearchResult extends Result
 {
-    protected $hitClass = '\vierbergenlars\Norch\ODM\SearchHit';
+    protected $hitClass = '\vierbergenlars\Forage\ODM\SearchHit';
 
     /**
      * Hydrates all results into objects
      * @internal
-     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
+     * @param \vierbergenlars\Forage\ODM\HydrationSettingsInterface $hydrationSettings
      */
     public function hydrate(HydrationSettingsInterface $hydrationSettings)
     {

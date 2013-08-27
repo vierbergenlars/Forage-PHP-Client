@@ -2,8 +2,8 @@
 
 namespace test\odm;
 
-use vierbergenlars\Norch\ODM\DocumentMapper as DM;
-use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
+use vierbergenlars\Forage\ODM\DocumentMapper as DM;
+use vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration;
 use test\searchquery\TransportMock;
 
 class documentmapper extends \UnitTestCase
@@ -16,12 +16,12 @@ class documentmapper extends \UnitTestCase
 
 
         $query = $dm->createQueryBuilder()->getQuery();
-        $this->assertIsA($query, 'vierbergenlars\Norch\ODM\SearchQuery');
+        $this->assertIsA($query, 'vierbergenlars\Forage\ODM\SearchQuery');
         foreach($query->execute() as $hit)
         {
             $this->assertIsA($hit->getDocument(), __NAMESPACE__.'\DocumentObject');
         }
-        $this->assertIsA($dm->getIndex(), 'vierbergenlars\Norch\ODM\SearchIndex');
+        $this->assertIsA($dm->getIndex(), 'vierbergenlars\Forage\ODM\SearchIndex');
 
     }
 }

@@ -2,8 +2,8 @@
 
 namespace test\odm;
 
-use vierbergenlars\Norch\ODM\SearchResult as Result;
-use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
+use vierbergenlars\Forage\ODM\SearchResult as Result;
+use vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchresult extends \UnitTestCase
 {
@@ -80,7 +80,7 @@ class searchresult extends \UnitTestCase
 
         foreach($result as $hit)
         {
-            $this->assertIsA($hit, 'vierbergenlars\Norch\ODM\SearchHit');
+            $this->assertIsA($hit, 'vierbergenlars\Forage\ODM\SearchHit');
             $this->assertIsA($hit->getDocument(), __NAMESPACE__.'\DocumentObject');
         }
     }

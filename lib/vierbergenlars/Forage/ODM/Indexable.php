@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\ODM;
+namespace vierbergenlars\Forage\ODM;
 
 use Defer\Deferrable;
 

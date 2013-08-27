@@ -2,7 +2,7 @@
 
 namespace test\odm;
 
-use vierbergenlars\Norch\ODM\Indexable;
+use vierbergenlars\Forage\ODM\Indexable;
 
 class DocumentObject implements Indexable
 {

@@ -1,25 +1,25 @@
 <?php
 
-namespace vierbergenlars\Norch;
+namespace vierbergenlars\Forage;
 
-use vierbergenlars\Norch\Transport\TransportInterface;
-use vierbergenlars\Norch\SearchQuery\Query;
-use vierbergenlars\Norch\SearchQuery\QueryBuilder;
-use vierbergenlars\Norch\SearchIndex\Index;
-use vierbergenlars\Norch\ODM\DocumentMapper;
-use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
+use vierbergenlars\Forage\Transport\TransportInterface;
+use vierbergenlars\Forage\SearchQuery\Query;
+use vierbergenlars\Forage\SearchQuery\QueryBuilder;
+use vierbergenlars\Forage\SearchIndex\Index;
+use vierbergenlars\Forage\ODM\DocumentMapper;
+use vierbergenlars\Forage\ODM\HydrationSettingsInterface;
 
 class Client
 {
     /**
      * The transport to use
-     * @var \vierbergenlars\Norch\Transport\TransportInterface
+     * @var \vierbergenlars\Forage\Transport\TransportInterface
      */
     protected $transport;
 
     /**
-     * Creates a new Norch client
-     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
+     * Creates a new Forage client
+     * @param \vierbergenlars\Forage\Transport\TransportInterface $transport
      */
     public function __construct(TransportInterface $transport)
     {
@@ -28,7 +28,7 @@ class Client
 
     /**
      * Creates a new query builder
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function createQueryBuilder()
     {
@@ -38,7 +38,7 @@ class Client
 
     /**
      * Gets the search index
-     * @return \vierbergenlars\Norch\SearchIndex\Index
+     * @return \vierbergenlars\Forage\SearchIndex\Index
      */
     public function getIndex()
     {
@@ -47,8 +47,8 @@ class Client
 
     /**
      * Creates a new document mapper
-     * @param \vierbergenlars\Norch\ODM\HydrationSettingsInterface $hydrationSettings
-     * @return \vierbergenlars\Norch\ODM\DocumentMapper
+     * @param \vierbergenlars\Forage\ODM\HydrationSettingsInterface $hydrationSettings
+     * @return \vierbergenlars\Forage\ODM\DocumentMapper
      */
     public function createDocumentMapper(HydrationSettingsInterface $hydrationSettings)
     {

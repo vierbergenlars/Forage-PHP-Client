@@ -2,7 +2,7 @@
 
 namespace test\searchresult;
 
-use vierbergenlars\Norch\SearchResult\SearchResult as Result;
+use vierbergenlars\Forage\SearchResult\SearchResult as Result;
 
 class searchresult extends \UnitTestCase
 {
@@ -125,12 +125,12 @@ class searchresult extends \UnitTestCase
 
         foreach($result as $hit)
         {
-            $this->assertIsA($hit, 'vierbergenlars\Norch\SearchResult\Hit');
+            $this->assertIsA($hit, 'vierbergenlars\Forage\SearchResult\Hit');
         }
 
         foreach($result->getFacets() as $facet)
         {
-            $this->assertIsA($facet, 'vierbergenlars\Norch\SearchResult\Facet');
+            $this->assertIsA($facet, 'vierbergenlars\Forage\SearchResult\Facet');
             $this->assertEqual($facet->getField(), 'categories');
             foreach($facet as $field => $number) {
                 $this->assertTrue(is_string($field), 'The field of a facet should be string.');

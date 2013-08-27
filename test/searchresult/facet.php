@@ -2,7 +2,7 @@
 
 namespace test\searchresult;
 
-use vierbergenlars\Norch\SearchResult\Facet as SearchFacet;
+use vierbergenlars\Forage\SearchResult\Facet as SearchFacet;
 
 class facet extends \UnitTestCase
 {

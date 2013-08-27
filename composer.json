@@ -1,6 +1,6 @@
 {
-    "name": "vierbergenlars/norch-client",
-    "description": "PHP client for the norch search server",
+    "name": "vierbergenlars/forage-client",
+    "description": "PHP client for the forage search server",
     "require": {
         "ext-curl": "*",
         "vierbergenlars/defer": "~1.0.1"
@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "vierbergenlars\\Norch": "lib/"
+            "vierbergenlars\\Forage": "lib/"
         }
     },
     "archive": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\Transport;
+namespace vierbergenlars\Forage\Transport;
 
 class TransportException extends \RuntimeException
 {

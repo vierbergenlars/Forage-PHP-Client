@@ -2,7 +2,7 @@
 
 namespace test\searchquery;
 
-use vierbergenlars\Norch\SearchQuery\Query as SearchQuery;
+use vierbergenlars\Forage\SearchQuery\Query as SearchQuery;
 
 class query extends \UnitTestCase
 {
@@ -11,7 +11,7 @@ class query extends \UnitTestCase
         $transport = new TransportMock;
         $query = new SearchQuery($transport, 'lol');
 
-        $this->assertIsA($query->execute(), 'vierbergenlars\Norch\SearchResult\SearchResult');
+        $this->assertIsA($query->execute(), 'vierbergenlars\Forage\SearchResult\SearchResult');
 
         $this->assertEqual($transport->calls, 1, 'The query function should be called exactly once');
         $this->assertEqual($transport->arguments, array('lol', array(), array(), array(), 0, 10, array()));
@@ -39,7 +39,7 @@ class query extends \UnitTestCase
         $this->assertEqual($query->limit, 3);
         $this->assertEqual($query->weights, array('body'=>array(3)));
 
-        $this->assertIsA($result, 'vierbergenlars\Norch\SearchResult\SearchResult');
+        $this->assertIsA($result, 'vierbergenlars\Forage\SearchResult\SearchResult');
         $this->assertEqual($transport->calls, 1, 'The query function should be called exactly once');
         $this->assertEqual($transport->arguments, array('lol', array('categories'), array('categories'), array('title'=>array('Whatever')), 2, 3, array('body'=>array(3))));
 

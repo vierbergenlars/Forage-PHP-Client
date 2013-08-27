@@ -2,9 +2,9 @@
 
 namespace test\odm;
 
-use vierbergenlars\Norch\ODM\SearchIndex as Index;
+use vierbergenlars\Forage\ODM\SearchIndex as Index;
 use test\searchindex\TransportMock;
-use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
+use vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchindex extends \UnitTestCase
 {

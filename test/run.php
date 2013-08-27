@@ -9,11 +9,11 @@ $loader = new \Composer\Autoload\ClassLoader();
 $loader->add('test', __DIR__.'/..');
 $loader->register();
 
-class NorchClientTests extends \TestSuite
+class ForageClientTests extends \TestSuite
 {
     public function __construct()
     {
-        parent::__construct('Norch Client tests');
+        parent::__construct('Forage Client tests');
         if (!getenv('CI'))
             $this->add(new transport\http);
         $this->add(new searchresult\hit);
@@ -26,10 +26,10 @@ class NorchClientTests extends \TestSuite
     }
 }
 
-class NorchODMTests extends \TestSuite
+class ForageODMTests extends \TestSuite
 {
     public function __construct() {
-        parent::__construct('Norch ODM tests');
+        parent::__construct('Forage ODM tests');
         $this->add(new odm\searchhit);
         $this->add(new odm\searchresult);
         $this->add(new odm\searchquery);
@@ -38,12 +38,12 @@ class NorchODMTests extends \TestSuite
     }
 }
 
-class NorchQueryParserTests extends \TestSuite
+class ForageQueryParserTests extends \TestSuite
 {
 
     public function __construct()
     {
-        parent::__construct('Norch QueryParser tests');
+        parent::__construct('Forage QueryParser tests');
         $this->add(new queryparser\lexer);
         $this->add(new queryparser\compiler);
     }

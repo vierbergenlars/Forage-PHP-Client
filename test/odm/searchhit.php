@@ -2,8 +2,8 @@
 
 namespace test\odm;
 
-use vierbergenlars\Norch\ODM\SearchHit as Hit;
-use vierbergenlars\Norch\ODM\HydrationSettings\SingleObjectHydration;
+use vierbergenlars\Forage\ODM\SearchHit as Hit;
+use vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration;
 
 class searchhit extends \UnitTestCase
 {

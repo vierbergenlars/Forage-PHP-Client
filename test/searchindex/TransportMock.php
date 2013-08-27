@@ -2,7 +2,7 @@
 
 namespace test\searchindex;
 
-use vierbergenlars\Norch\Transport\TransportInterface;
+use vierbergenlars\Forage\Transport\TransportInterface;
 
 class TransportMock implements TransportInterface
 {

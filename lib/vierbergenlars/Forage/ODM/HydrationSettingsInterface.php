@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\ODM;
+namespace vierbergenlars\Forage\ODM;
 
 /**
  * Interface for settings for the hydration of search results in objects

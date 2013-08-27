@@ -2,9 +2,9 @@
 
 namespace test\queryparser;
 
-use vierbergenlars\Norch\QueryParser\Lexer as L;
-use vierbergenlars\Norch\QueryParser\Token;
-use vierbergenlars\Norch\QueryParser\ParseException;
+use vierbergenlars\Forage\QueryParser\Lexer as L;
+use vierbergenlars\Forage\QueryParser\Token;
+use vierbergenlars\Forage\QueryParser\ParseException;
 
 class lexer extends \UnitTestCase
 {

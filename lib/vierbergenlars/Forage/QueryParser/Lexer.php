@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\QueryParser;
+namespace vierbergenlars\Forage\QueryParser;
 
 /**
  * @internal
@@ -97,7 +97,7 @@ class Lexer
      * Create a new {@link Token::T_NONE} token and set it as current.
      *
      * @param array $tokens
-     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param \vierbergenlars\Forage\QueryParser\Token $current_token
      * @param int $i The current position in the string being tokenized
      */
     static private function push(&$tokens, &$current_token, $i)
@@ -113,7 +113,7 @@ class Lexer
 
     /**
      * Reads an encapsulated (quoted) string
-     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param \vierbergenlars\Forage\QueryParser\Token $current_token
      * @param string $string The string being tokenized
      * @param int $i The current position in the string being tokenized
      */
@@ -132,7 +132,7 @@ class Lexer
 
     /**
      * Reads an integer
-     * @param \vierbergenlars\Norch\QueryParser\Token $current_token
+     * @param \vierbergenlars\Forage\QueryParser\Token $current_token
      * @param string $string The string being tokenized
      * @param int $i The current position in the string being tokenized
      */

@@ -1,8 +1,8 @@
 <?php
 
-namespace vierbergenlars\Norch\SearchQuery;
+namespace vierbergenlars\Forage\SearchQuery;
 
-use vierbergenlars\Norch\SearchQuery\Query;
+use vierbergenlars\Forage\SearchQuery\Query;
 /**
  * Helps building search queries
  */
@@ -10,13 +10,13 @@ class QueryBuilder
 {
     /**
      * The query that is under construction
-     * @var \vierbergenlars\Norch\SearchQuery\Query
+     * @var \vierbergenlars\Forage\SearchQuery\Query
      */
     protected $query;
 
     /**
      * Creates a new query builder
-     * @param \vierbergenlars\Norch\SearchQuery\Query $query Override the query object that is built
+     * @param \vierbergenlars\Forage\SearchQuery\Query $query Override the query object that is built
      */
     public function __construct(Query $query)
     {
@@ -26,7 +26,7 @@ class QueryBuilder
     /**
      * Sets the search query
      * @param string $query
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function setSearchQuery($query)
     {
@@ -37,7 +37,7 @@ class QueryBuilder
     /**
      * Sets the offset for the search query
      * @param int $offset
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function setOffset($offset)
     {
@@ -48,7 +48,7 @@ class QueryBuilder
     /**
      * Sets the limit for the search query
      * @param int $limit
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function setLimit($limit)
     {
@@ -59,7 +59,7 @@ class QueryBuilder
     /**
      * Adds a new field to search in
      * @param string $field
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function addSearchField($field)
     {
@@ -70,7 +70,7 @@ class QueryBuilder
     /**
      * Removes a field from the list to search in
      * @param string $field
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function removeSearchField($field)
     {
@@ -81,7 +81,7 @@ class QueryBuilder
     /**
      * Adds a new facet
      * @param string $facet
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function addFacet($facet)
     {
@@ -92,7 +92,7 @@ class QueryBuilder
     /**
      * Removes a facet
      * @param string $facet
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function removeFacet($facet)
     {
@@ -104,7 +104,7 @@ class QueryBuilder
      * Adds a filter on a field
      * @param string $field The field to add a filter to
      * @param string|array $value The value(s) to limit the field to
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function addFilter($field, $value)
     {
@@ -116,7 +116,7 @@ class QueryBuilder
      * Removes a filter on a field
      * @param string $field The field to remove a filter from
      * @param string|array|null $value The values to remove from the filter. If `null`, remove all filters on the field.
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function removeFilter($field, $value=null)
     {
@@ -128,7 +128,7 @@ class QueryBuilder
      * Adds a weight to a field
      * @param string $field
      * @param int|array $value
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function addWeight($field, $value)
     {
@@ -140,7 +140,7 @@ class QueryBuilder
      * Removes a weight from a field
      * @param string $field
      * @param int|array $value
-     * @return \vierbergenlars\Norch\SearchQuery\QueryBuilder
+     * @return \vierbergenlars\Forage\SearchQuery\QueryBuilder
      */
     public function removeWeight($field, $value=null)
     {
@@ -150,7 +150,7 @@ class QueryBuilder
 
     /**
      * Gets the completed query
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function getQuery()
     {

@@ -2,11 +2,11 @@
 
 namespace test\queryparser;
 
-use vierbergenlars\Norch\QueryParser\Compiler as C;
-use vierbergenlars\Norch\SearchQuery\Query;
-use vierbergenlars\Norch\SearchQuery\QueryBuilder;
-use vierbergenlars\Norch\QueryParser\ParseException;
-use vierbergenlars\Norch\QueryParser\Token;
+use vierbergenlars\Forage\QueryParser\Compiler as C;
+use vierbergenlars\Forage\SearchQuery\Query;
+use vierbergenlars\Forage\SearchQuery\QueryBuilder;
+use vierbergenlars\Forage\QueryParser\ParseException;
+use vierbergenlars\Forage\QueryParser\Token;
 use test\searchquery\TransportMock;
 
 class compiler extends \UnitTestCase

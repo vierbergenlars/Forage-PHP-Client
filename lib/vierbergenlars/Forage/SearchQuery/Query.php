@@ -1,8 +1,8 @@
 <?php
 
-namespace vierbergenlars\Norch\SearchQuery;
+namespace vierbergenlars\Forage\SearchQuery;
 
-use vierbergenlars\Norch\Transport\TransportInterface;
+use vierbergenlars\Forage\Transport\TransportInterface;
 
 /**
  * A search query
@@ -55,17 +55,17 @@ class Query
      * The class that parses the results
      * @var string
      */
-    protected $searchResultClass = '\vierbergenlars\Norch\SearchResult\SearchResult';
+    protected $searchResultClass = '\vierbergenlars\Forage\SearchResult\SearchResult';
 
     /**
      * The transport to use
-     * @var \vierbergenlars\Norch\Transport\TransportInterface
+     * @var \vierbergenlars\Forage\Transport\TransportInterface
      */
     protected $transport;
 
     /**
      * Creates a new search query
-     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
+     * @param \vierbergenlars\Forage\Transport\TransportInterface $transport
      * @param string $query
      */
     public function __construct(TransportInterface $transport, $query = '') {
@@ -77,7 +77,7 @@ class Query
      * Sets the search query
      *
      * @param string $query
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setQuery($query)
     {
@@ -89,7 +89,7 @@ class Query
      * Sets the fields to search in
      *
      * @param array $searchFields
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setSearchFields(array $searchFields)
     {
@@ -101,7 +101,7 @@ class Query
      * Sets the fields to facet on
      *
      * @param array $facetFields
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setFacetFields(array $facetFields)
     {
@@ -112,7 +112,7 @@ class Query
     /**
      * Sets filters for search fields
      * @param array $searchFilters
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setSearchFilters(array $searchFilters)
     {
@@ -123,7 +123,7 @@ class Query
     /**
      * Sets the offset to the start of the result list
      * @param int $offset
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setOffset($offset)
     {
@@ -134,7 +134,7 @@ class Query
     /**
      * Sets the number of records to fetch
      * @param int $limit
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setLimit($limit)
     {
@@ -145,7 +145,7 @@ class Query
     /**
      * Sets the weights of each column
      * @param array $weights
-     * @return \vierbergenlars\Norch\SearchQuery\Query
+     * @return \vierbergenlars\Forage\SearchQuery\Query
      */
     public function setWeights(array $weights)
     {
@@ -155,7 +155,7 @@ class Query
 
     /**
      * Executes the query
-     * @return \vierbergenlars\Norch\SearchResult\SearchResult
+     * @return \vierbergenlars\Forage\SearchResult\SearchResult
      */
     public function execute()
     {

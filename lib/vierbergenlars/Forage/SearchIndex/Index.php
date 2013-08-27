@@ -1,8 +1,8 @@
 <?php
 
-namespace vierbergenlars\Norch\SearchIndex;
+namespace vierbergenlars\Forage\SearchIndex;
 
-use vierbergenlars\Norch\Transport\TransportInterface;
+use vierbergenlars\Forage\Transport\TransportInterface;
 
 /**
  * The search index
@@ -29,13 +29,13 @@ class Index
 
     /**
      * The transport to use
-     * @var \vierbergenlars\Norch\Transport\TransportInterface
+     * @var \vierbergenlars\Forage\Transport\TransportInterface
      */
     protected $transport;
 
     /**
      * Creates a new search index
-     * @param \vierbergenlars\Norch\Transport\TransportInterface $transport
+     * @param \vierbergenlars\Forage\Transport\TransportInterface $transport
      * @param array $documents The documents to upload. The array key is the document ID.
      * @param array $facetFields The fields to facet on
      */
@@ -51,7 +51,7 @@ class Index
     /**
      * Adds a field to facet on
      * @param string $field
-     * @return \vierbergenlars\Norch\SearchIndex\Index
+     * @return \vierbergenlars\Forage\SearchIndex\Index
      */
     public function addFacetField($field)
     {
@@ -62,7 +62,7 @@ class Index
     /**
      * Removes a field that was faceted on
      * @param string $field
-     * @return \vierbergenlars\Norch\SearchIndex\Index
+     * @return \vierbergenlars\Forage\SearchIndex\Index
      */
     public function removeFacetField($field)
     {
@@ -73,7 +73,7 @@ class Index
     /**
      * Adds a new document to the index
      * @param array $document Should contain a parameter 'id', that will be used as an id
-     * @return \vierbergenlars\Norch\SearchIndex\Index
+     * @return \vierbergenlars\Forage\SearchIndex\Index
      */
     public function addDocument($document)
     {
@@ -89,7 +89,7 @@ class Index
     /**
      * Removes a document from the index
      * @param int|string $id The id of the document
-     * @return \vierbergenlars\Norch\SearchIndex\Index
+     * @return \vierbergenlars\Forage\SearchIndex\Index
      */
     public function removeDocument($id)
     {

@@ -2,7 +2,7 @@
 
 namespace test\searchresult;
 
-use vierbergenlars\Norch\SearchResult\Hit as SearchHit;
+use vierbergenlars\Forage\SearchResult\Hit as SearchHit;
 
 class hit extends \UnitTestCase
 {

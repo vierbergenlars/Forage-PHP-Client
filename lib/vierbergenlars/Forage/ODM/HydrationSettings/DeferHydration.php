@@ -1,8 +1,8 @@
 <?php
 
-namespace vierbergenlars\Norch\ODM\HydrationSettings;
+namespace vierbergenlars\Forage\ODM\HydrationSettings;
 
-use vierbergenlars\Norch\ODM\HydrationSettingsInterface;
+use vierbergenlars\Forage\ODM\HydrationSettingsInterface;
 use Defer\Object as Defer;
 
 /**

@@ -1,11 +1,11 @@
 <?php
 
-namespace vierbergenlars\Norch\Transport;
+namespace vierbergenlars\Forage\Transport;
 
 /**
  * Interface all transport objects should implement
  *
- * The Transport layer provides a low-level interface to the Norch search server.
+ * The Transport layer provides a low-level interface to the Forage search server.
  * The transport layer is responsible for serializing of the passed data,
  * and unserialisation of the received data. It should not modify requests or responses.
  */

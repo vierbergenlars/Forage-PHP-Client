@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Norch\QueryParser;
+namespace vierbergenlars\Forage\QueryParser;
 
 class ParseException extends \Exception
 {

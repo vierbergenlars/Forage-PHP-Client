@@ -25,9 +25,6 @@ class Configuration implements ConfigurationInterface
                         ->enumNode('type')->values(array('http', 'socket'))->defaultValue('http')->info('Type of transport to use')->end()
                         ->scalarNode('location')->defaultValue('http//localhost:3000/')->info('Location of the Forage server')->end()
                 ->end()->end()
-                ->arrayNode('dm')->children()
-                    ->scalarNode('hydration')->end()
-                ->end()
             ->end();
 
         // Here you should define the parameters that are allowed to

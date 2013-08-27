@@ -30,9 +30,7 @@ class vierbergenlarsForageExtension extends Extension
             default:
                 throw new \InvalidArgumentException('transport.type must be http');
         }
-        if(isset($config['dm'])) {
-            $container->setParameter('vierbergenlars.forage.dm.hydrationsettings.class', $config['dm']['hydration']);
-        }
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

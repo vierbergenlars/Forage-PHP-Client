@@ -1,11 +1,11 @@
-Norch-PHP-Client
+Forage-PHP-Client
 ================
 
-[![Build Status](https://travis-ci.org/vierbergenlars/Norch-PHP-Client.png?branch=master)](https://travis-ci.org/vierbergenlars/Norch-PHP-Client)
+[![Build Status](https://travis-ci.org/vierbergenlars/Forage-PHP-Client.png?branch=master)](https://travis-ci.org/vierbergenlars/Forage-PHP-Client)
 
-A PHP client for the Norch search server
+A PHP client for the Forage search server
 
-License: [MIT](https://github.com/vierbergenlars/Norch-PHP-Client/blob/master/LICENSE)
+License: [MIT](https://github.com/vierbergenlars/Forage-PHP-Client/blob/master/LICENSE)
 
 ## Installation
 
@@ -18,9 +18,9 @@ License: [MIT](https://github.com/vierbergenlars/Norch-PHP-Client/blob/master/LI
 ```php
 <?php
 
-use vierbergenlars\Norch\Transport\Http as HttpTransport;
+use vierbergenlars\Forage\Transport\Http as HttpTransport;
 
-$transport = new HttpTransport('http://localhost:3000/'); // Edit if the Norch server lives somewhere else
+$transport = new HttpTransport('http://localhost:3000/'); // Edit if the Forage server lives somewhere else
 
 ```
 

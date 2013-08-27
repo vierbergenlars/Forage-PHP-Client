@@ -130,8 +130,8 @@ class Compiler
                     $nextToken = next($tokens);
                     if($nextToken === false)
                         throw new ParseException('Unexpected end of token stream', $queryExpr, strlen($queryExpr));
-                    if(!$this->isAllowedToken($token))
-                        throw new ParseException(Token::getName($token->getType()) . ' is disabled', $queryExpr, $token->getStartPosition());
+                    if(!$this->isAllowedToken($nextToken))
+                        throw new ParseException(Token::getName($nextToken->getType()) . ' is disabled', $queryExpr, $nextToken->getStartPosition());
                     switch($nextToken->getType()) {
                         case Token::T_FIELD_VALUE:
                             $this->queryBuilder->addFilter($token->getData(), $nextToken->getData());
@@ -140,7 +140,7 @@ class Compiler
                             $this->queryBuilder->addWeight($token->getData(), $nextToken->getData());
                             break;
                         default:
-                            throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $token->getStartPosition());
+                            throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $nextToken->getStartPosition());
                     }
                     break;
                 case Token::T_FIELD_SEARCH:

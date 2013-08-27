@@ -77,6 +77,17 @@ class compiler extends \UnitTestCase
         $c->compileQuery('field2: sfsf');
 
         $c = clone $compiler;
+        $c->setAllowedTokens(array(Token::T_STRING, Token::T_FIELD_NAME, Token::T_FIELD_VALUE));
+        $c->setAllowedFieldNames(array('course', 'type', 'filename'));
+        $ex = false;
+        try {
+            $c->compileQuery('course^2');
+        } catch(ParseException $e) {
+            $ex = true;
+        }
+        $this->assertTrue($ex);
+
+        $c = clone $compiler;
         $c->setAllowedSearchFields(array('field2', 'field3'));
         $ex = false;
         try {

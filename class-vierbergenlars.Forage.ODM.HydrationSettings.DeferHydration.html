@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class vierbergenlars\Forage\ODM\HydrationSettings\DeferHydration | Forage-PHP-Client</title>
+
+	<script type="text/javascript" src="resources/combined.js?45490431"></script>
+	<script type="text/javascript" src="elementlist.js?1233628431"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-vierbergenlars.html">vierbergenlars<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-vierbergenlars.Forage.html">Forage<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-vierbergenlars.Forage.ODM.html">ODM<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-vierbergenlars.Forage.ODM.HydrationSettings.html">HydrationSettings</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-vierbergenlars.Forage.QueryParser.html">QueryParser</a>
+						</li>
+				<li><a href="namespace-vierbergenlars.Forage.SearchIndex.html">SearchIndex</a>
+						</li>
+				<li><a href="namespace-vierbergenlars.Forage.SearchQuery.html">SearchQuery</a>
+						</li>
+				<li><a href="namespace-vierbergenlars.Forage.SearchResult.html">SearchResult</a>
+						</li>
+				<li><a href="namespace-vierbergenlars.Forage.Transport.html">Transport</a>
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html">DeferHydration</a></li>
+				<li><a href="class-vierbergenlars.Forage.ODM.HydrationSettings.SingleObjectHydration.html">SingleObjectHydration</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-vierbergenlars.Forage.ODM.HydrationSettings.html" title="Summary of vierbergenlars\Forage\ODM\HydrationSettings"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class DeferHydration</h1>
+
+
+	<div class="description">
+	
+<p>Base class for hydration strategies that use vierbergenlars/defer to hydrate
+their objects</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>vierbergenlars\Forage\ODM\HydrationSettings\DeferHydration</span></b>			
+			 implements 
+				<a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html"><span>vierbergenlars\Forage\ODM\HydrationSettingsInterface</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-vierbergenlars.Forage.ODM.HydrationSettings.SingleObjectHydration.html">vierbergenlars\Forage\ODM\HydrationSettings\SingleObjectHydration</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Forage.html">Forage</a>\<a href="namespace-vierbergenlars.Forage.ODM.html">ODM</a>\<a href="namespace-vierbergenlars.Forage.ODM.HydrationSettings.html">HydrationSettings</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#8-44" title="Go to source code">vierbergenlars/Forage/ODM/HydrationSettings/DeferHydration.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getParameters" id="_getParameters">
+
+		<td class="attributes"><code>
+			abstract public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParameters">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#14-19" title="Go to source code">getParameters</a>( <span>array <var>$document</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Gets the properties to be injected in the object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Gets the properties to be injected in the object</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$document</var></dt>
+					<dd><code>array</code><br>$document The document received from the search query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>A map of object properties to values<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getClass" id="_getClass">
+
+		<td class="attributes"><code>
+			abstract public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getClass">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#21-26" title="Go to source code">getClass</a>( <span>array <var>$document</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Gets the class name of the object that will be hydrated</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Gets the class name of the object that will be hydrated</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$document</var></dt>
+					<dd><code>array</code><br>$document The document received from the search query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>A fully qualified class name. (Should implement Defer\Object\Deferrable)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getObject" id="_getObject">
+
+		<td class="attributes"><code>
+			 public 
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getObject">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#28-42" title="Go to source code">getObject</a>( <span>array <var>$document</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Gets the object from a document</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Gets the object from a document</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$document</var></dt>
+					<dd><code>array</code><br>$document</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>object</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getObject">vierbergenlars\Forage\ODM\HydrationSettingsInterface::getObject()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#methods">vierbergenlars\Forage\ODM\HydrationSettingsInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getDocument">getDocument()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Forage-PHP-Client API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

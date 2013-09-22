@@ -6,7 +6,7 @@
         "vierbergenlars/defer": "~1.0.1"
     },
     "require-dev": {
-        "vierbergenlars/simpletest": "1.1.2"
+        "simpletest/simpletest": "~1.1"
     },
     "license": "MIT",
     "authors": [
@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "vierbergenlars\\Forage": "lib/"
+            "vierbergenlars\\Forage\\": "lib/"
         }
     },
     "archive": {

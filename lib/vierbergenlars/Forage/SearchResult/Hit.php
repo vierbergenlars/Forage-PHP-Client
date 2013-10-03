@@ -8,6 +8,13 @@ namespace vierbergenlars\Forage\SearchResult;
 class Hit
 {
     /**
+     * The id of the document that matched
+     *
+     * @var string|int
+     */
+    protected $id;
+
+    /**
      * The terms that matched in the document
      *
      * @var array
@@ -35,6 +42,7 @@ class Hit
      */
     public function __construct(array $hit_array)
     {
+        $this->id = $hit_array['id'];
         $this->matchedTerms = $hit_array['matchedTerms'];
         $this->document = $hit_array['document'];
         $this->score = $hit_array['score'];
@@ -67,5 +75,15 @@ class Hit
     public function getDocument()
     {
         return $this->document;
+    }
+
+    /**
+     * Gets the id of the document
+     *
+     * @return string|int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

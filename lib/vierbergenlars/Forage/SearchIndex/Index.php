@@ -41,8 +41,8 @@ class Index
      */
     public function __construct(TransportInterface $transport, array $documents = array(), array $facetFields = array())
     {
-        foreach($documents as $document)
-            $this->addDocument($document);
+        foreach($documents as $id=>$document)
+            $this->addDocument($id, $document);
         foreach($facetFields as $field)
             $this->addFacetField ($field);
         $this->transport = $transport;
@@ -72,15 +72,14 @@ class Index
 
     /**
      * Adds a new document to the index
-     * @param array $document Should contain a parameter 'id', that will be used as an id
+     * @param string|int $id The id of the document
+     * @param array $document The data for the document
      * @return \vierbergenlars\Forage\SearchIndex\Index
      */
-    public function addDocument($document)
+    public function addDocument($id, $document)
     {
         if (!is_array($document))
             throw new \BadMethodCallException('Parameter 1 of ' . __METHOD__ . ' should be array, ' . (is_object($document) ? get_class($document) : gettype($document)) . ' given.');
-        $id = $document['id'];
-        unset($document['id']);
         unset($this->removedDocuments[$id]);
         $this->uploadedDocuments[$id] = $document;
         return $this;

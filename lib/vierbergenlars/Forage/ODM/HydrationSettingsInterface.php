@@ -15,9 +15,16 @@ interface HydrationSettingsInterface
     public function getDocument($document);
 
     /**
+     * Gets the id of the document from the object
+     * @param object $document
+     * @return string|int The id of the document to be stored in the database
+     */
+    public function getDocumentId($document);
+
+    /**
      * Gets the object from a document
      * @param array $document
-     * @return object
+     * @return SearchHit
      */
-    public function getObject(array $document);
+    public function getObject(SearchHit $document);
 }

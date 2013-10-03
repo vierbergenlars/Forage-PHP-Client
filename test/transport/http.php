@@ -64,8 +64,8 @@ class http extends \UnitTestCase
             'title'=>'Lol Dog',
             'categories'=> array('images', 'funny', 'dog'),
             'body'=>'dog dog lol!!',
-            'id'=>1
         ));
+        $this->assertEqual($lolSearch['hits'][0]['id'], 1);
         $this->assertNotNull($lolSearch['hits'][0]['score']);
 
         $lolCatSearch = $this->transport->search('Lol Cat');
@@ -97,23 +97,6 @@ class http extends \UnitTestCase
                 "dog"=> 1
               ),
             "body"=>array(
-                "c"=> 5,
-                "a"=> 6,
-                "t"=> 5,
-                " "=> 8,
-                "l"=> 6,
-                "o"=> 6,
-                "!"=> 3,
-                "d"=> 4,
-                "g"=> 2,
-                "/"=> 2,
-                "e"=> 1,
-                "v"=> 1,
-                "u"=> 1,
-                "r"=> 1,
-                "n"=> 1,
-                "m"=> 1,
-                "."=> 3
               )
         ));
     }

@@ -10,13 +10,13 @@ class index extends \UnitTestCase
     {
         $transport = new TransportMock;
         $index = new SearchIndex($transport, array(
-            array ('id' => 'doc1', 'title' => 'a', 'body' => 'b', 'categories' => array (
+            'doc1'=> array ('title' => 'a', 'body' => 'b', 'categories' => array (
                     'a', 'b')),
-            array ('id' => 'doc2', 'title' => 'b', 'body' => 'c', 'categories' => array (
+            'doc2'=>array ('title' => 'b', 'body' => 'c', 'categories' => array (
                     'b', 'c'))
                 ), array('categories', 'body'));
 
-        $index->addDocument(array ('id' => 'doc3', 'title' => 'c', 'body' => 'asdfasdf',
+        $index->addDocument('doc3', array ('title' => 'c', 'body' => 'asdfasdf',
                     'categories' => array ('c', 'a', 'd')))
                 ->addFacetField('title')
                 ->removeFacetField('body');
@@ -61,17 +61,17 @@ class index extends \UnitTestCase
         $transport = new TransportMock;
         $index = new SearchIndex($transport);
 
-        $index->addDocument(array ('id' => 1, 'title' => 'a'))
-                ->addDocument(array ('id' => 2, 'title' => 'b'))
-                ->addDocument(array ('id' => 3, 'title' => 'c'))
-                ->addDocument(array ('id' => 4, 'title' => 'd'));
+        $index->addDocument(1, array ('title' => 'a'))
+                ->addDocument(2, array ('title' => 'b'))
+                ->addDocument(3, array ('title' => 'c'))
+                ->addDocument(4, array ('title' => 'd'));
 
         $index->removeDocument(2)
                 ->removeDocument(4)
                 ->removeDocument(5)
                 ->removeDocument(6);
 
-        $index->addDocument(array ('id' => 5, 'title' => 'e'));
+        $index->addDocument(5, array ('title' => 'e'));
 
         $status = $index->flush();
 

@@ -2,6 +2,9 @@ Forage-PHP-Client
 ================
 
 [![Build Status](https://travis-ci.org/vierbergenlars/Forage-PHP-Client.png?branch=master)](https://travis-ci.org/vierbergenlars/Forage-PHP-Client)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/vierbergenlars/Forage-PHP-Client/badges/quality-score.png?s=de9b3c08fd559763d8b7e896d463dd65d9fc663e)](https://scrutinizer-ci.com/g/vierbergenlars/Forage-PHP-Client/)
+[![Latest Stable Version](https://poser.pugx.org/vierbergenlars/forage-client/v/stable.png)](https://packagist.org/packages/vierbergenlars/forage-client)
+[![Total Downloads](https://poser.pugx.org/vierbergenlars/forage-client/downloads.png)](https://packagist.org/packages/vierbergenlars/forage-client)
 
 A PHP client for the Forage search server
 
@@ -9,141 +12,37 @@ License: [MIT](https://github.com/vierbergenlars/Forage-PHP-Client/blob/master/L
 
 ## Installation
 
-`$ composer require vierbergenlars/forage-client:*`
+`$ composer require vierbergenlars/forage-client:~0.2@alpha`
 
-## Usage
-
-### Transport library
+## Usage example
 
 ```php
 <?php
 
 use vierbergenlars\Forage\Transport\Http as HttpTransport;
+use vierbergenlars\Forage\Client;
 
-$transport = new HttpTransport('http://localhost:3000/'); // Edit if the Forage server lives somewhere else
+$transport = new HttpTransport;
+$client = new Client($transport);
 
+$query = $client->createQueryBuilder()
+               ->setSearchQuery('Funny cat')
+               ->setOffset(($_GET['page']-1)*10)
+               ->setLimit(10)
+               ->addSearchField('title')
+               ->addFacet('media_type')
+               ->addFilter('animal', 'cat')
+               ->addFilter('categories', array('funny', 'lol'))
+               ->addWeight('title', 3)
+               ->getQuery();
+
+$results = $query->execute();
+
+echo 'Total hits: '.$results->getTotalHits();
+foreach($result as $hit) {
+    /* @var $hit \vierbergenlars\Forage\SearchResult\Hit */
+    echo ' - '.$hit->getDocument()['title'].' (score: '.$hit->getScore().'; id='.$hit->getId().')';
+}
 ```
 
-#### Indexing
-
-```php
-<?php
-
-// Index a bunch of documents
-$transport->indexBatch(
-    array( // Documents to index (the array keys should be unique for each document on the server)
-        785 => array(
-            'title' => 'My super-awesome report',
-            'body' => 'Bla bla bla',
-            'tags' => array('awesome', 'financial'),
-            'countries' => array('USA', 'Canada', 'Mexico')
-        ),
-        786 => array(
-            'title' => 'Another super-awesome report',
-            'body' => 'Bla bla bla**2',
-            'tags' => array('awesome', 'advice'),
-            'countries' => array('Brazil', 'Mexico');
-        )
-    ),
-    array( // Fields to build facets for (must contain arrays)
-        'tags',
-        'countries'
-    )
-);
-```
-
-#### Deleting
-
-```php
-<?php
-// Delete a document
-$transport->deleteDoc(786);
-```
-
-#### Searching
-
-```php
-<?php
-// Search
-$results = $transport->search(
-    'Bla bla report',
-    array('title','body'), // Fields to search in
-    array('tags', 'countries'), // Facets to calculate
-    array( // Only search documents with fields that are equal to these values
-        'countries'=> array('USA','Mexico'), // Countries should be either USA or Mexico
-    ),
-    5, // Skip the first 5 results (for pagination)
-    5, // Return the 5 next items (for pagination)
-    array( // Weigh these fields more than the others (by default, all fields are weighed 1)
-        'title'=> array(3) // Finding the search in the title grants 3 times more points than finding it elsewhere
-    )
-);
-
-$results['totalHits'];
-
-$results['facets'] ==
-    array(
-        'tags'=> array(
-            'awesome'=>2,
-            'advice'=>1,
-            'financial'=>1
-        ),
-        'countries'=> array(
-           'USA'=>1,
-           'Canada'=>1,
-           'Mexico'=>2,
-           'Brazil'=>1
-        )
-    );
-
-$results['hits'] ==
-    array(
-        array(
-            'matchedTerms'=> array(
-                'report'=> array(
-                    'title'=>1
-                ),
-                'bla'=> array(
-                    'body'=>2
-                )
-            ),
-            'document'=> array(
-                'title' => 'My super-awesome report',
-                'body' => 'Bla bla bla',
-                'tags' => array('awesome', 'financial'),
-                'countries' => array('USA', 'Canada', 'Mexico'),
-                'id'=>785
-            ),
-            'score'=> 3.119162312519754
-        ),
-        // ... Repeated for each result
-    );
-
-```
-
-#### Metadata
-
-```php
-<?php
-
-// Get metadata about the state of the index
-$metadata = $transport->getIndexMetadata();
-
-$metadata['totalIndexedFields'];
-$metadata['totalDocs'];
-$metadata['reverseIndexSize'];
-
-$metadata['indexedFieldNames'] ==
-    array(
-        'title',
-        'body',
-        'tags',
-        'countries'
-    );
-
-$metadata['availableFacets'] ==
-    array(
-        'tags',
-        'countries'
-    );
-```
+Full documentation is available in the [wiki](https://github.com/vierbergenlars/Forage-PHP-Client/wiki/_pages), or have a look at the [API documentation](http://vierbergenlars.github.io/Forage-PHP-Client/)

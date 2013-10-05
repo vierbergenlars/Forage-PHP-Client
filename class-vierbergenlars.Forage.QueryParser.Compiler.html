@@ -210,6 +210,48 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="isAllowedFieldName" id="_isAllowedFieldName">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAllowedFieldName">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#58-66" title="Go to source code">isAllowedFieldName</a>( <span>string <var>$field</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks if a field name is allowed</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks if a field name is allowed</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd><code>string</code><br>$field</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setAllowedSearchFields" id="_setAllowedSearchFields">
 
 		<td class="attributes"><code>
@@ -252,6 +294,48 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="isAllowedSearchField" id="_isAllowedSearchField">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAllowedSearchField">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#79-87" title="Go to source code">isAllowedSearchField</a>( <span>string <var>$field</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks if a search field is allowed</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks if a search field is allowed</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$field</var></dt>
+					<dd><code>string</code><br>$field</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setAllowedTokens" id="_setAllowedTokens">
 
 		<td class="attributes"><code>
@@ -286,6 +370,48 @@
 				<h4>Returns</h4>
 				<div class="list">
 					<code><code><a href="class-vierbergenlars.Forage.QueryParser.Compiler.html">vierbergenlars\Forage\QueryParser\Compiler</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isAllowedToken" id="_isAllowedToken">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAllowedToken">#</a>
+		<code><a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#100-108" title="Go to source code">isAllowedToken</a>( <span><code><a href="class-vierbergenlars.Forage.QueryParser.Token.html">vierbergenlars\Forage\QueryParser\Token</a></code> <var>$token</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks if a token is allowed</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks if a token is allowed</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$token</var></dt>
+					<dd><code><code><a href="class-vierbergenlars.Forage.QueryParser.Token.html">vierbergenlars\Forage\QueryParser\Token</a></code></code><br>$token</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
 				</div>
 
 
@@ -456,6 +582,117 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="queryBuilder" id="$queryBuilder">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-vierbergenlars.Forage.SearchQuery.QueryBuilder.html">vierbergenlars\Forage\SearchQuery\QueryBuilder</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#14-18" title="Go to source code"><var>$queryBuilder</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$queryBuilder" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The query builder the query gets inserted to</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The query builder the query gets inserted to</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="allowedSearchFields" id="$allowedSearchFields">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#20-24" title="Go to source code"><var>$allowedSearchFields</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$allowedSearchFields" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>List of fields that are allowed with T_FIELD_SEARCH</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>List of fields that are allowed with T_FIELD_SEARCH</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="allowedFieldNames" id="$allowedFieldNames">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#26-30" title="Go to source code"><var>$allowedFieldNames</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$allowedFieldNames" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>List of fields that are allowed with T_FIELD_NAME</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>List of fields that are allowed with T_FIELD_NAME</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="allowedTokens" id="$allowedTokens">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.QueryParser.Compiler.html#32-36" title="Go to source code"><var>$allowedTokens</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$allowedTokens" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>List of tokens that are allowed</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>List of tokens that are allowed</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

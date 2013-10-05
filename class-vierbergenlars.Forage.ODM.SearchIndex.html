@@ -141,7 +141,7 @@
 		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Forage.html">Forage</a>\<a href="namespace-vierbergenlars.Forage.ODM.html">ODM</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#8-64" title="Go to source code">vierbergenlars/Forage/ODM/SearchIndex.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#8-70" title="Go to source code">vierbergenlars/Forage/ODM/SearchIndex.php</a><br />
 	</div>
 
 
@@ -159,7 +159,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#32-42" title="Go to source code">addDocument</a>( <span>object <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#32-46" title="Go to source code">addDocument</a>( <span>object <var>$document</var></span>, <span>null <var>$_</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -177,6 +177,8 @@
 				<div class="list"><dl>
 					<dt><var>$document</var></dt>
 					<dd><code>object</code><br>$document</dd>
+					<dt><var>$_</var></dt>
+					<dd><code>null</code><br>$_ Unused parameter</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -203,7 +205,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#44-62" title="Go to source code">removeDocument</a>( <span>object|string|integer <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#48-68" title="Go to source code">removeDocument</a>( <span>object|string|integer <var>$document</var></span>, <span>null <var>$_</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -223,6 +225,8 @@
 					<dd><code>object|string|integer</code><br>$document When the document to remove is given as a string or an integer, it is
 used as an id. If it is an object, <code><a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getDocument">vierbergenlars\Forage\ODM\HydrationSettingsInterface::getDocument()</a></code> gets called, and the document id will
 be determined from the returned array.</dd>
+					<dt><var>$_</var></dt>
+					<dd><code>null</code><br>$_ Unused parameter</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -262,7 +266,48 @@ be determined from the returned array.</dd>
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="hydrationSettings" id="$hydrationSettings">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html">vierbergenlars\Forage\ODM\HydrationSettingsInterface</a></code>
+		</code></td>
 
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.ODM.SearchIndex.html#14-18" title="Go to source code"><var>$hydrationSettings</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$hydrationSettings" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The hydration settings</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The hydration settings</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-vierbergenlars.Forage.SearchIndex.Index.html#properties">vierbergenlars\Forage\SearchIndex\Index</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-vierbergenlars.Forage.SearchIndex.Index.html#$facetFields"><var>$facetFields</var></a>, 
+			<a href="class-vierbergenlars.Forage.SearchIndex.Index.html#$removedDocuments"><var>$removedDocuments</var></a>, 
+			<a href="class-vierbergenlars.Forage.SearchIndex.Index.html#$transport"><var>$transport</var></a>, 
+			<a href="class-vierbergenlars.Forage.SearchIndex.Index.html#$uploadedDocuments"><var>$uploadedDocuments</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

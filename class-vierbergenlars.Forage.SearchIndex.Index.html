@@ -122,7 +122,7 @@
 		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Forage.html">Forage</a>\<a href="namespace-vierbergenlars.Forage.SearchIndex.html">SearchIndex</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#7-121" title="Go to source code">vierbergenlars/Forage/SearchIndex/Index.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#7-120" title="Go to source code">vierbergenlars/Forage/SearchIndex/Index.php</a><br />
 	</div>
 
 
@@ -266,7 +266,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#73-87" title="Go to source code">addDocument</a>( <span>array <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#73-86" title="Go to source code">addDocument</a>( <span>string|integer <var>$id</var></span>, <span>array <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
@@ -282,8 +282,10 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string|integer</code><br>$id The id of the document</dd>
 					<dt><var>$document</var></dt>
-					<dd><code>array</code><br>$document Should contain a parameter 'id', that will be used as an id</dd>
+					<dd><code>array</code><br>$document The data for the document</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -308,7 +310,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_removeDocument">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#89-100" title="Go to source code">removeDocument</a>( <span>integer|string <var>$id</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#88-99" title="Go to source code">removeDocument</a>( <span>integer|string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -350,7 +352,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flush">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#102-120" title="Go to source code">flush</a>( )</code>
+		<code><a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#101-119" title="Go to source code">flush</a>( )</code>
 
 		<div class="description short">
 			
@@ -389,6 +391,117 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="uploadedDocuments" id="$uploadedDocuments">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#12-16" title="Go to source code"><var>$uploadedDocuments</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$uploadedDocuments" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The documents in the queue to be uploaded</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The documents in the queue to be uploaded</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="removedDocuments" id="$removedDocuments">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#18-22" title="Go to source code"><var>$removedDocuments</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$removedDocuments" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The documents in the queue to be deleted</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The documents in the queue to be deleted</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="facetFields" id="$facetFields">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#24-28" title="Go to source code"><var>$facetFields</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$facetFields" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The fields to facet the uploaded documents on</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The fields to facet the uploaded documents on</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="transport" id="$transport">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-vierbergenlars.Forage.Transport.TransportInterface.html">vierbergenlars\Forage\Transport\TransportInterface</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-vierbergenlars.Forage.SearchIndex.Index.html#30-34" title="Go to source code"><var>$transport</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$transport" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The transport to use</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The transport to use</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

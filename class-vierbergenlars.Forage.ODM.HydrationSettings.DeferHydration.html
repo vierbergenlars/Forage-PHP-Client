@@ -133,7 +133,7 @@ their objects</p>
 		<b>Namespace:</b> <a href="namespace-vierbergenlars.html">vierbergenlars</a>\<a href="namespace-vierbergenlars.Forage.html">Forage</a>\<a href="namespace-vierbergenlars.Forage.ODM.html">ODM</a>\<a href="namespace-vierbergenlars.Forage.ODM.HydrationSettings.html">HydrationSettings</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#8-44" title="Go to source code">vierbergenlars/Forage/ODM/HydrationSettings/DeferHydration.php</a><br />
+		<b>Located at</b> <a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#9-49" title="Go to source code">vierbergenlars/Forage/ODM/HydrationSettings/DeferHydration.php</a><br />
 	</div>
 
 
@@ -151,7 +151,7 @@ their objects</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#14-19" title="Go to source code">getParameters</a>( <span>array <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#15-21" title="Go to source code">getParameters</a>( <span>string|integer <var>$id</var></span>, <span>array <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
@@ -167,6 +167,8 @@ their objects</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string|integer</code><br>$id The id of the document received from the search query</dd>
 					<dt><var>$document</var></dt>
 					<dd><code>array</code><br>$document The document received from the search query</dd>
 				</dl></div>
@@ -193,7 +195,7 @@ their objects</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getClass">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#21-26" title="Go to source code">getClass</a>( <span>array <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#23-29" title="Go to source code">getClass</a>( <span>string|integer <var>$id</var></span>, <span>array <var>$document</var></span> )</code>
 
 		<div class="description short">
 			
@@ -209,6 +211,8 @@ their objects</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string|integer</code><br>$id The id of the document received from the search query</dd>
 					<dt><var>$document</var></dt>
 					<dd><code>array</code><br>$document The document received from the search query</dd>
 				</dl></div>
@@ -235,7 +239,7 @@ their objects</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getObject">#</a>
-		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#28-42" title="Go to source code">getObject</a>( <span>array <var>$document</var></span> )</code>
+		<code><a href="source-class-vierbergenlars.Forage.ODM.HydrationSettings.DeferHydration.html#31-47" title="Go to source code">getObject</a>( <span><code><a href="class-vierbergenlars.Forage.ODM.SearchHit.html">vierbergenlars\Forage\ODM\SearchHit</a></code> <var>$hit</var></span> )</code>
 
 		<div class="description short">
 			
@@ -251,7 +255,7 @@ their objects</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$document</var></dt>
+					<dt><var>$hit</var></dt>
 					<dd><code>array</code><br>$document</dd>
 				</dl></div>
 
@@ -274,7 +278,8 @@ their objects</p>
 	<caption>Methods inherited from <a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#methods">vierbergenlars\Forage\ODM\HydrationSettingsInterface</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getDocument">getDocument()</a>
+			<a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getDocument">getDocument()</a>, 
+			<a href="class-vierbergenlars.Forage.ODM.HydrationSettingsInterface.html#_getDocumentId">getDocumentId()</a>
 		</code></td>
 	</tr>
 	</table>

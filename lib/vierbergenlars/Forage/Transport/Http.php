@@ -145,7 +145,13 @@ class Http implements TransportInterface
         if(curl_errno($ch))
             throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
         curl_close($ch);
-
+        if($resp === 'no results') {
+            return array(
+                'totalHits'=>0,
+                'facets'=>array(),
+                'hits'=> array(),
+            );
+        }
         return json_decode($resp, true);
     }
 

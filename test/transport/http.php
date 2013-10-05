@@ -72,6 +72,17 @@ class http extends \UnitTestCase
         $this->assertEqual($lolCatSearch['totalHits'], 2);
     }
 
+    function testSearchEmptyResultSet()
+    {
+        $search = $this->transport->search('s');
+        var_dump($search);
+        $this->assertTrue(is_array($search));
+        $this->assertEqual($search['totalHits'], 0);
+        $this->assertEqual($search['hits'], array());
+        $this->assertEqual($search['facets'], array());
+    }
+
+
     function testFieldedSearch()
     {
         $lolSearch = $this->transport->search('Lol', array('title'));
@@ -131,5 +142,4 @@ class http extends \UnitTestCase
         $lolSearch = $this->transport->search('Lol');
         $this->assertEqual($lolSearch['totalHits'], 2);
     }
-
 }

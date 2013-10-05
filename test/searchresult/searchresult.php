@@ -93,9 +93,9 @@ class searchresult extends \UnitTestCase
           "funny",
           "dog"
         ],
-        "body": "dog dog lol!!",
-        "id": "1"
+        "body": "dog dog lol!!"
       },
+      "id": "1",
       "score": 3.453877639491069
     },
     {
@@ -109,9 +109,9 @@ class searchresult extends \UnitTestCase
         "categories": [
           "random"
         ],
-        "body": "cat /dev/urandom... lol",
-        "id": "2"
+        "body": "cat /dev/urandom... lol"
       },
+      "id": "2",
       "score": 2.302585092994046
     }
   ]

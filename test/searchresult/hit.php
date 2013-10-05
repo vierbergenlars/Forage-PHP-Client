@@ -23,8 +23,9 @@ class hit extends \UnitTestCase
                 "dog"
               ),
               "body"=> "dog dog lol!!",
-              "id"=> "1"
+
             ),
+            "id"=> "1",
             "score"=> 51651.64
         ));
 
@@ -45,7 +46,8 @@ class hit extends \UnitTestCase
                 "dog"
               ),
               "body"=> "dog dog lol!!",
-              "id"=> "1"
         ));
+
+        $this->assertEqual($hit->getId(), 1);
     }
 }

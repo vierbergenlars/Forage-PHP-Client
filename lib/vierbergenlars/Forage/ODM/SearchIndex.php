@@ -33,11 +33,15 @@ class SearchIndex extends Index
      * {@inheritDoc}
      *
      * @param object $document
+     * @param null $_ Unused parameter
      * @return \vierbergenlars\Forage\ODM\SearchIndex
      */
-    public function addDocument($document)
+    public function addDocument($document, $_ = null)
     {
-        parent::addDocument($this->hydrationSettings->getDocument($document));
+        parent::addDocument(
+            $this->hydrationSettings->getDocumentId($document),
+            $this->hydrationSettings->getDocument($document)
+        );
         return $this;
     }
 
@@ -48,13 +52,15 @@ class SearchIndex extends Index
      *      When the document to remove is given as a string or an integer,
      *      it is used as an id. If it is an object, {@link HydrationSettingsInterface::getDocument()}
      *      gets called, and the document id will be determined from the returned array.
+     * @param null $_ Unused parameter
      * @return \vierbergenlars\Forage\ODM\SearchIndex
      */
-    public function removeDocument($document)
+    public function removeDocument($document, $_ = null)
     {
         if(is_object($document)) {
-            $doc = $this->hydrationSettings->getDocument($document);
-            parent::removeDocument($doc['id']);
+            parent::removeDocument(
+                $this->hydrationSettings->getDocumentId($document)
+            );
         } else {
             parent::removeDocument($document);
         }

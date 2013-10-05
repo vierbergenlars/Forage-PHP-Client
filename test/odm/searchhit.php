@@ -22,8 +22,8 @@ class searchhit extends \UnitTestCase
                 'title'=>'Lol docu!',
                 'body'=>'asdf osnfoeoq asofns sfqsf',
                 'categories'=>array('a','0xA', '0xFFF', 'sfefqs'),
-                'id'=>5
             ),
+            'id'=>5,
             'score'=>1.2684648946
         );
 
@@ -37,6 +37,6 @@ class searchhit extends \UnitTestCase
         $this->assertEqual($doc->getTitle(), $document['document']['title']);
         $this->assertEqual($doc->getBody(), $document['document']['body']);
         $this->assertEqual($doc->getCategories()->getArrayCopy(), $document['document']['categories']);
-        $this->assertEqual($doc->getIdReal(), $document['document']['id']);
+        $this->assertEqual($doc->getIdReal(), $document['id']);
     }
 }

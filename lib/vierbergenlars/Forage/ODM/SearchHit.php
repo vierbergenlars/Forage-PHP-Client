@@ -17,6 +17,6 @@ class SearchHit extends Hit
      */
     public function hydrate(HydrationSettingsInterface $hydrationSettings)
     {
-        $this->document = $hydrationSettings->getObject($this->document);
+        $this->document = $hydrationSettings->getObject($this);
     }
 }

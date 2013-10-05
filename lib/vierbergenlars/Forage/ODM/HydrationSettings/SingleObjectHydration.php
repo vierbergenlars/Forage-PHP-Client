@@ -30,7 +30,7 @@ class SingleObjectHydration extends DeferHydration
      * {@inheritDoc}
      * @internal
      */
-    public function getClass(array $document)
+    public function getClass($id, array $document)
     {
         return $this->className;
     }
@@ -39,9 +39,20 @@ class SingleObjectHydration extends DeferHydration
      * {@inheritDoc}
      * @internal
      */
-    public function getParameters(array $document)
+    public function getParameters($id, array $document)
     {
-        return $document;
+        return array_merge($document, array('id'=>$id));
+    }
+
+    /**
+     * Gets the document array from the object
+     * @param \vierbergenlars\Forage\ODM\Indexable $document
+     */
+    private function getDocArray($document)
+    {
+        if(!is_a($document, $this->className))
+            throw new \LogicException('Document should be of type ' . $this->className . ', got ' . get_class($document));
+        return $document->toDocument();
     }
 
     /**
@@ -51,9 +62,20 @@ class SingleObjectHydration extends DeferHydration
      */
     public function getDocument($document)
     {
-        if(!is_a($document, $this->className))
-            throw new \LogicException('Document should be of type ' . $this->className . ', got ' . get_class($document));
-        return $document->toDocument();
+        $doc = $this->getDocArray($document);
+        unset($doc['id']);
+        return $doc;
+    }
+
+    /**
+     * {@InheritDoc}
+     * @param \vierbergenlars\Forage\ODM\Indexable $document
+     * @internal
+     */
+    public function getDocumentId($document)
+    {
+        $doc = $this->getDocArray($document);
+        return $doc['id'];
     }
 
 }

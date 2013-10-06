@@ -125,28 +125,10 @@ class Compiler
                     $searchQuery.= ' ' . $token->getData();
                     break;
                 case Token::T_FIELD_NAME:
-                    if(!$this->isAllowedFieldName($token->getData()))
-                        throw new ParseException('Field name not allowed', $queryExpr, $token->getStartPosition());
-                    $nextToken = next($tokens);
-                    if($nextToken === false)
-                        throw new ParseException('Unexpected end of token stream', $queryExpr, strlen($queryExpr));
-                    if(!$this->isAllowedToken($nextToken))
-                        throw new ParseException(Token::getName($nextToken->getType()) . ' is disabled', $queryExpr, $nextToken->getStartPosition());
-                    switch($nextToken->getType()) {
-                        case Token::T_FIELD_VALUE:
-                            $this->queryBuilder->addFilter($token->getData(), $nextToken->getData());
-                            break;
-                        case Token::T_FIELD_WEIGHT:
-                            $this->queryBuilder->addWeight($token->getData(), $nextToken->getData());
-                            break;
-                        default:
-                            throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $nextToken->getStartPosition());
-                    }
+                    $this->compileFieldName($tokens, $queryExpr);
                     break;
                 case Token::T_FIELD_SEARCH:
-                    if(!$this->isAllowedSearchField($token->getData()))
-                        throw new ParseException('Search field not allowed', $queryExpr, $token->getStartPosition());
-                    $this->queryBuilder->addSearchField($token->getData());
+                    $this->compileSearchField($tokens, $queryExpr);
                     break;
                 default:
                     throw new ParseException('Unexpected ' . Token::getName($token->getType()) . ' (This is a lexer bug, please report it)', $queryExpr, $token->getStartPosition());
@@ -155,6 +137,36 @@ class Compiler
         }
         $this->queryBuilder->setSearchQuery(substr($searchQuery, 1));
         return $this;
+    }
+
+    private function compileFieldName(&$tokens, $queryExpr)
+    {
+        $token = current($tokens);
+        if(!$this->isAllowedFieldName($token->getData()))
+            throw new ParseException('Field name not allowed', $queryExpr, $token->getStartPosition());
+        $nextToken = next($tokens);
+        if($nextToken === false)
+            throw new ParseException('Unexpected end of token stream', $queryExpr, strlen($queryExpr));
+        if(!$this->isAllowedToken($nextToken))
+            throw new ParseException(Token::getName($nextToken->getType()) . ' is disabled', $queryExpr, $nextToken->getStartPosition());
+        switch($nextToken->getType()) {
+            case Token::T_FIELD_VALUE:
+                $this->queryBuilder->addFilter($token->getData(), $nextToken->getData());
+                break;
+            case Token::T_FIELD_WEIGHT:
+                $this->queryBuilder->addWeight($token->getData(), $nextToken->getData());
+                break;
+            default:
+                throw new ParseException('Unexpected ' . Token::getName($nextToken->getType()), $queryExpr, $nextToken->getStartPosition());
+        }
+    }
+
+    private function compileSearchField($tokens, $queryExpr)
+    {
+        $token = current($tokens);
+        if(!$this->isAllowedSearchField($token->getData()))
+            throw new ParseException('Search field not allowed', $queryExpr, $token->getStartPosition());
+        $this->queryBuilder->addSearchField($token->getData());
     }
 
     /**

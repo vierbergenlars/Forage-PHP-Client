@@ -37,8 +37,8 @@ class Hit
     /**
      * Creates a new hit object
      *
-     * @private
-     * @param array $hit_array
+     * @internal
+     * @param array $hit
      */
     public function __construct(array $hit)
     {

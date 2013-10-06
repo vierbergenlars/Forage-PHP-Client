@@ -36,8 +36,8 @@ class SearchResult extends \ArrayObject
     /**
      * Creates a new SearchResult object
      *
-     * @private
-     * @param array $result_array The result array from the transport layer
+     * @internal
+     * @param array $results The result array from the transport layer
      */
     public function __construct(array $results)
     {

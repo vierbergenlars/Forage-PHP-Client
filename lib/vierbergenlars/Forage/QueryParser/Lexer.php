@@ -41,27 +41,10 @@ class Lexer
                     self::push($tokens, $currentToken, $i);
                     break;
                 case ':':
-                    if($currentToken->getData() == null)
-                        throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
-                    if(!$currentToken->isTypeNoneOr(Token::T_FIELD_NAME))
-                        throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($currentToken->getType()), $string, $i);
-                    $currentToken->setType(Token::T_FIELD_NAME);
-                    self::push($tokens, $currentToken, $i);
-                    $currentToken->setType(Token::T_FIELD_VALUE);
+                    self::tokenizeField($tokens, $currentToken, $string, $i);
                     break;
                 case '^':
-                    if($currentToken->getData() == null)
-                        throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
-                    if(!$currentToken->isTypeNoneOr(Token::T_FIELD_NAME))
-                        throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($currentToken->getType()), $string, $i);
-                    $currentToken->setType(Token::T_FIELD_NAME);
-                    $fieldToken = $currentToken;
-                    self::push($tokens, $currentToken, $i);
-                    $currentToken->setType(Token::T_FIELD_WEIGHT);
-                    self::readInt($currentToken, $string, $i);
-                    self::push($tokens, $currentToken, $i);
-                    if($i + 1 < $len && $string[$i + 1] == ':') // Peek one ahead. Duplicate T_FIELD_NAME token if a T_FIELD_VALUE follows.
-                        $currentToken = $fieldToken;
+                    self::tokenizeWeight($tokens, $currentToken, $string, $i);
                     break;
                 case '@':
                     if($currentToken->getData() != null)
@@ -70,14 +53,7 @@ class Lexer
                     $currentToken->setType(Token::T_FIELD_SEARCH);
                     break;
                 case '"':
-                    if($currentToken->getData() == null) {
-                        $currentToken->setTypeIfNone(Token::T_STRING);
-                        self::readEncString($currentToken, $string, $i);
-                        if($i + 1 < $len && $string[$i + 1] != ' ') // Peek one ahead. Should be empty
-                            throw new ParseException('Unexpected T_STRING', $string, $i + 1);
-                    } else {
-                        throw new ParseException('Unexpected T_STRING', $string, $i);
-                    }
+                    self::tokenizeEncString($currentToken, $string, $i);
                     break;
                 default:
                     $currentToken->addData($c);
@@ -86,6 +62,71 @@ class Lexer
         }
         self::push($tokens, $currentToken, $i);
         return $tokens;
+    }
+
+    /**
+     * Parses an encapsulated string
+     *
+     * @param Token $currentToken
+     * @param string $string
+     * @param int $i
+     * @throws ParseException
+     */
+    static private function tokenizeEncString($currentToken, $string, &$i)
+    {
+        if($currentToken->getData() == null) {
+            $currentToken->setTypeIfNone(Token::T_STRING);
+            self::readEncString($currentToken, $string, $i);
+            if($i + 1 < strlen($string) && $string[$i + 1] != ' ') // Peek one ahead. Should be empty
+                throw new ParseException('Unexpected T_STRING', $string, $i + 1);
+        } else {
+            throw new ParseException('Unexpected T_STRING', $string, $i);
+        }
+    }
+
+    /**
+     * Parses a field weight
+     *
+     * @param array $tokens
+     * @param Token $currentToken
+     * @param string $string
+     * @param int $i
+     * @throws ParseException
+     */
+    static private function tokenizeWeight(&$tokens, &$currentToken, $string, &$i)
+    {
+        if($currentToken->getData() == null)
+            throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
+        if(!$currentToken->isTypeNoneOr(Token::T_FIELD_NAME))
+            throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($currentToken->getType()), $string, $i);
+        $currentToken->setType(Token::T_FIELD_NAME);
+        $fieldToken = $currentToken;
+        self::push($tokens, $currentToken, $i);
+        $currentToken->setType(Token::T_FIELD_WEIGHT);
+        self::readInt($currentToken, $string, $i);
+        self::push($tokens, $currentToken, $i);
+        if($i + 1 < strlen($string) && $string[$i + 1] == ':') // Peek one ahead. Duplicate T_FIELD_NAME token if a T_FIELD_VALUE follows.
+            $currentToken = $fieldToken;
+    }
+
+    /**
+     * Parses a field entry
+     *
+     * @param array $tokens
+     * @param Token $currentToken
+     * @param string $string
+     * @param int $i
+     * @throws ParseException
+     */
+    static private function tokenizeField(&$tokens, &$currentToken, $string, $i)
+    {
+        if($currentToken->getData() == null)
+            throw new ParseException('Expected T_FIELD_NAME, got nothing', $string, $i);
+        if(!$currentToken->isTypeNoneOr(Token::T_FIELD_NAME))
+            throw new ParseException('Expected T_FIELD_NAME, got ' . Token::getName($currentToken->getType()), $string, $i);
+        $currentToken->setType(Token::T_FIELD_NAME);
+        self::push($tokens, $currentToken, $i);
+        $currentToken->setType(Token::T_FIELD_VALUE);
     }
 
     /**

@@ -30,8 +30,8 @@ class Lexer
         $currentToken = new Token(Token::T_NONE, 0);
         $i = 0;
         while($i < $len) {
-            $c = $string[$i];
-            switch($c) {
+            $char = $string[$i];
+            switch($char) {
                 case '\\': // Escape character
                     if(++$i >= $len)
                         throw new ParseException('Unexpected end of query', $string, $i);
@@ -47,16 +47,13 @@ class Lexer
                     self::tokenizeWeight($tokens, $currentToken, $string, $i);
                     break;
                 case '@':
-                    if($currentToken->getData() != null)
-                        throw new ParseException('Expected nothing, got ' . Token::getName($currentToken->getType()), $string, $i);
-                    $currentToken->setStartPosition($i);
-                    $currentToken->setType(Token::T_FIELD_SEARCH);
+                    self::tokenizeSearchField($currentToken, $string, $i);
                     break;
                 case '"':
                     self::tokenizeEncString($currentToken, $string, $i);
                     break;
                 default:
-                    $currentToken->addData($c);
+                    $currentToken->addData($char);
             }
             $i++;
         }
@@ -127,6 +124,21 @@ class Lexer
         $currentToken->setType(Token::T_FIELD_NAME);
         self::push($tokens, $currentToken, $i);
         $currentToken->setType(Token::T_FIELD_VALUE);
+    }
+
+    /**
+     * Parses a search field
+     * @param Token $currentToken
+     * @param string $string
+     * @param int $i
+     * @throws ParseException
+     */
+    static private function tokenizeSearchField($currentToken, $string, $i)
+    {
+        if($currentToken->getData() != null)
+            throw new ParseException('Expected nothing, got ' . Token::getName($currentToken->getType()), $string, $i);
+        $currentToken->setStartPosition($i);
+        $currentToken->setType(Token::T_FIELD_SEARCH);
     }
 
     /**

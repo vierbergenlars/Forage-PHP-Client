@@ -173,14 +173,14 @@ class Http implements TransportInterface
      */
     public function getIndexMetadata()
     {
-        $ch = curl_init($this->basePath.'indexData');
-        if(!$ch)
+        $curl = curl_init($this->basePath.'indexData');
+        if(!$curl)
             throw new TransportException('Cannot open a cURL session');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resp = curl_exec($ch);
-        if(curl_errno($ch))
-            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
-        curl_close($ch);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $resp = curl_exec($curl);
+        if(curl_errno($curl))
+            throw new TransportException('cURL error: '.curl_error($curl), curl_errno($curl));
+        curl_close($curl);
 
         return json_decode($resp, true);
     }

@@ -24,7 +24,7 @@ class Http implements TransportInterface
         $this->basePath = $basePath;
     }
 
-    private static function addPostBody($ch, $fields = array(), $files = array())
+    private static function addPostBody($curl, $fields = array(), $files = array())
     {
         $boundary = '--------------'.uniqid();
 
@@ -48,12 +48,12 @@ class Http implements TransportInterface
 
         $data.='--'.$boundary.'--'."\r\n";
 
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             'Content-Type: multipart/form-data; boundary='.$boundary,
             'Content-Length: '.strlen($data)
         ));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
     }
 
     /**
@@ -67,10 +67,10 @@ class Http implements TransportInterface
     {
         $jsonDocuments = json_encode($documents);
         $docid = uniqid();
-        $ch = curl_init($this->basePath.'indexer');
-        if(!$ch)
+        $curl = curl_init($this->basePath.'indexer');
+        if(!$curl)
             throw new TransportException('Cannot open a cURL session');
-        self::addPostBody($ch, array(
+        self::addPostBody($curl, array(
             'filterOn'=>implode(',', $filter)
             ), array(
                 'document'=> array(
@@ -78,11 +78,11 @@ class Http implements TransportInterface
                     'data'=> $jsonDocuments
                 )
         ));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $reply = curl_exec($ch);
-        if(curl_errno($ch))
-            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
-        curl_close($ch);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $reply = curl_exec($curl);
+        if(curl_errno($curl))
+            throw new TransportException('cURL error: '.curl_error($curl), curl_errno($curl));
+        curl_close($curl);
         if(trim($reply) === 'indexed batch: '.$docid.'.json')
             return true;
         return false;
@@ -111,35 +111,24 @@ class Http implements TransportInterface
         array $weight       = array()
     )
     {
-        $querystring = '?q=' . urlencode($query);
-        foreach($searchFields as $field) {
-            $querystring.='&searchFields[]=' . urlencode($field);
-        }
-        if($facets) {
-            $querystring.='&facets=' . urlencode(implode(',', $facets));
-        }
-        foreach($filters as $name=>$values) {
-            foreach($values as $value) {
-                $querystring.='&filter[' . urlencode($name) . '][]=' . urlencode($value);
-            }
-        }
-        $querystring .= '&offset=' . (int)$offset;
-        $querystring .= '&pagesize=' . (int)$pagesize;
-        foreach($weight as $name=>$values) {
-            foreach($values as $value) {
-                $querystring.='&weight[' . urlencode($name) . '][]=' . urlencode($value);
-            }
-        }
+        $getParameters = array(
+            'q'=>(string)$query,
+            'searchFields'=>$searchFields,
+            'facets'=>implode(',', $facets),
+            'filters'=>$filters,
+            'offset'=>(int)$offset,
+            'pagesize'=>(int)$pagesize,
+            'weight'=>$weight,
+        );
 
-
-        $ch = curl_init($this->basePath.'search'.$querystring);
-        if(!$ch)
+        $curl = curl_init($this->basePath.'search?'.http_build_query($getParameters));
+        if(!$curl)
             throw new TransportException('Cannot open a cURL session');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resp = curl_exec($ch);
-        if(curl_errno($ch))
-            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
-        curl_close($ch);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $resp = curl_exec($curl);
+        if(curl_errno($curl))
+            throw new TransportException('cURL error: '.curl_error($curl), curl_errno($curl));
+        curl_close($curl);
         if($resp === 'no results') {
             return array(
                 'totalHits'=>0,
@@ -159,18 +148,18 @@ class Http implements TransportInterface
      */
     public function deleteDoc($docId)
     {
-        $ch = curl_init($this->basePath.'delete');
-        if(!$ch)
+        $curl = curl_init($this->basePath.'delete');
+        if(!$curl)
             throw new TransportException('Cannot open a cURL session');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, array(
             'docID'=>$docId
         ));
-        $resp = curl_exec($ch);
-        if(curl_errno($ch))
-            throw new TransportException('cURL error: '.curl_error($ch), curl_errno($ch));
-        curl_close($ch);
+        $resp = curl_exec($curl);
+        if(curl_errno($curl))
+            throw new TransportException('cURL error: '.curl_error($curl), curl_errno($curl));
+        curl_close($curl);
         if(trim($resp) === 'deleted '.$docId)
             return true;
         return false;

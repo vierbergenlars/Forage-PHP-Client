@@ -165,9 +165,9 @@ class Token
     {
         $refl = new \ReflectionClass(__CLASS__);
         $constants = $refl->getConstants();
-        $token_name = array_search($token, $constants);
-        if($token_name)
-            return $token_name;
+        $name = array_search($token, $constants);
+        if($name)
+            return $name;
         return 'UNKNOWN_TOKEN';
     }
 

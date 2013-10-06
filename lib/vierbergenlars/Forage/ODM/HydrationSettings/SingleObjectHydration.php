@@ -30,7 +30,7 @@ class SingleObjectHydration extends DeferHydration
      * {@inheritDoc}
      * @internal
      */
-    public function getClass($id, array $document)
+    protected function getClass($id, array $document)
     {
         return $this->className;
     }
@@ -39,7 +39,7 @@ class SingleObjectHydration extends DeferHydration
      * {@inheritDoc}
      * @internal
      */
-    public function getParameters($id, array $document)
+    protected function getParameters($id, array $document)
     {
         return array_merge($document, array('id'=>$id));
     }

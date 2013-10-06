@@ -39,17 +39,17 @@ class SearchResult extends \ArrayObject
      * @private
      * @param array $result_array The result array from the transport layer
      */
-    public function __construct(array $result_array)
-        {
-        $this->totalHits = $result_array['totalHits'];
+    public function __construct(array $results)
+    {
+        $this->totalHits = $results['totalHits'];
         $facetClass = $this->facetClass;
         $hitClass = $this->hitClass;
-        foreach($result_array['facets'] as $field => $results) {
-            if(count($results) > 1) // Don't add facets that have at most one result, it's pointless to facet on those.
-                $this->facets[] = new $facetClass($field, $results);
+        foreach($results['facets'] as $field => $facets) {
+            if(count($facets) > 1) // Don't add facets that have at most one result, it's pointless to facet on those.
+                $this->facets[] = new $facetClass($field, $facets);
         }
         $hits = array();
-        foreach($result_array['hits'] as $hit) {
+        foreach($results['hits'] as $hit) {
             $hits[] = new $hitClass($hit);
         }
         parent::__construct($hits);

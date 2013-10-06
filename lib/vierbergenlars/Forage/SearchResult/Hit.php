@@ -40,12 +40,12 @@ class Hit
      * @private
      * @param array $hit_array
      */
-    public function __construct(array $hit_array)
+    public function __construct(array $hit)
     {
-        $this->id = $hit_array['id'];
-        $this->matchedTerms = $hit_array['matchedTerms'];
-        $this->document = $hit_array['document'];
-        $this->score = $hit_array['score'];
+        $this->id = $hit['id'];
+        $this->matchedTerms = $hit['matchedTerms'];
+        $this->document = $hit['document'];
+        $this->score = $hit['score'];
     }
 
     /**

@@ -13,15 +13,15 @@ class Http implements TransportInterface
      * The path to the place where Forage is listening
      * @var string
      */
-    private $base_path;
+    private $basePath;
 
     /**
      * Creates a new HTTP transport layer
      * @param string $base_path The base path of the Forage server
      */
-    public function __construct($base_path = 'http://localhost:3000/')
+    public function __construct($basePath = 'http://localhost:3000/')
     {
-        $this->base_path = $base_path;
+        $this->basePath = $basePath;
     }
 
     private static function addPostBody($ch, $fields = array(), $files = array())
@@ -65,9 +65,9 @@ class Http implements TransportInterface
      */
     public function indexBatch(array $documents, array $filter)
     {
-        $json_docs = json_encode($documents);
+        $jsonDocuments = json_encode($documents);
         $docid = uniqid();
-        $ch = curl_init($this->base_path.'indexer');
+        $ch = curl_init($this->basePath.'indexer');
         if(!$ch)
             throw new TransportException('Cannot open a cURL session');
         self::addPostBody($ch, array(
@@ -75,7 +75,7 @@ class Http implements TransportInterface
             ), array(
                 'document'=> array(
                     'filename'=>$docid.'.json',
-                    'data'=> $json_docs
+                    'data'=> $jsonDocuments
                 )
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -103,41 +103,36 @@ class Http implements TransportInterface
      */
     public function search(
               $query,
-        array $searchFields = null,
-        array $facets       = null,
-        array $filters      = null,
+        array $searchFields = array(),
+        array $facets       = array(),
+        array $filters      = array(),
               $offset       = 0,
               $pagesize     = 10,
-        array $weight       = null
+        array $weight       = array()
     )
     {
         $querystring = '?q=' . urlencode($query);
-        if($searchFields) {
-            foreach($searchFields as $field)
-                $querystring.='&searchFields[]=' . urlencode($field);
+        foreach($searchFields as $field) {
+            $querystring.='&searchFields[]=' . urlencode($field);
         }
         if($facets) {
             $querystring.='&facets=' . urlencode(implode(',', $facets));
         }
-        if($filters) {
-            foreach($filters as $name=>$values)
-                foreach($values as $value)
-                    $querystring.='&filter[' . urlencode($name) . '][]=' . urlencode($value);
+        foreach($filters as $name=>$values) {
+            foreach($values as $value) {
+                $querystring.='&filter[' . urlencode($name) . '][]=' . urlencode($value);
+            }
         }
-        if($offset) {
-            $querystring .= '&offset=' . urlencode($offset);
-        }
-        if($pagesize != 10) {
-            $querystring .= '&pagesize=' . urlencode($pagesize);
-        }
-        if($weight) {
-            foreach($weight as $name=>$values)
-                foreach($values as $value)
-                    $querystring.='&weight[' . urlencode($name) . '][]=' . urlencode($value);
+        $querystring .= '&offset=' . (int)$offset;
+        $querystring .= '&pagesize=' . (int)$pagesize;
+        foreach($weight as $name=>$values) {
+            foreach($values as $value) {
+                $querystring.='&weight[' . urlencode($name) . '][]=' . urlencode($value);
+            }
         }
 
 
-        $ch = curl_init($this->base_path.'search'.$querystring);
+        $ch = curl_init($this->basePath.'search'.$querystring);
         if(!$ch)
             throw new TransportException('Cannot open a cURL session');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -164,7 +159,7 @@ class Http implements TransportInterface
      */
     public function deleteDoc($docId)
     {
-        $ch = curl_init($this->base_path.'delete');
+        $ch = curl_init($this->basePath.'delete');
         if(!$ch)
             throw new TransportException('Cannot open a cURL session');
         curl_setopt($ch, CURLOPT_POST, true);
@@ -189,7 +184,7 @@ class Http implements TransportInterface
      */
     public function getIndexMetadata()
     {
-        $ch = curl_init($this->base_path.'indexData');
+        $ch = curl_init($this->basePath.'indexData');
         if(!$ch)
             throw new TransportException('Cannot open a cURL session');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

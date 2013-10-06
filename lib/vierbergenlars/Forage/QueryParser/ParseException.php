@@ -7,26 +7,26 @@ class ParseException extends \Exception
     public function __construct($message, $string = null, $pos = null)
     {
         if($string) {
-            $startpos = $pos - 15;
-            $start_diff = 0;
-            if($startpos < 0) {
-                $start_diff = $startpos;
-                $startpos = 0;
+            $startPos = $pos - 15;
+            $startDiff = 0;
+            if($startPos < 0) {
+                $startDiff = $startPos;
+                $startPos = 0;
             }
 
-            $str = substr($string, $startpos, 30);
+            $str = substr($string, $startPos, 30);
 
-            $err_pos_in_str = 15 + $start_diff;
+            $errPos = 15 + $startDiff;
 
 
             $message.=' near ';
-            $msg_len = strlen($message);
+            $msgLen = strlen($message);
             $message.= $str;
             $message.="\n";
             $i = 0;
-            for($i = 0; $i < $msg_len; $i++)
+            for($i = 0; $i < $msgLen; $i++)
                 $message.=' ';
-            for($i = 0; $i < $err_pos_in_str; $i++)
+            for($i = 0; $i < $errPos; $i++)
                 $message.='-';
             $message.='^';
         }

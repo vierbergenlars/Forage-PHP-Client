@@ -18,7 +18,7 @@ abstract class DeferHydration implements HydrationSettingsInterface
      * @param array $document The document received from the search query
      * @return array A map of object properties to values
      */
-    abstract public function getParameters($id, array $document);
+    abstract protected function getParameters($id, array $document);
 
     /**
      * Gets the class name of the object that will be hydrated
@@ -26,7 +26,7 @@ abstract class DeferHydration implements HydrationSettingsInterface
      * @param array $document The document received from the search query
      * @return string A fully qualified class name. (Should implement {@link Defer\Deferrable})
      */
-    abstract public function getClass($id, array $document);
+    abstract protected function getClass($id, array $document);
 
     /**
      * Gets the object from a document

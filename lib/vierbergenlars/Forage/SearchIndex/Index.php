@@ -105,7 +105,7 @@ class Index
     public function flush()
     {
         $statuses = array();
-        foreach($this->removedDocuments as $id=>$_)
+        foreach(array_keys($this->removedDocuments) as $id)
         {
             $statuses[] = $this->transport->deleteDoc($id);
         }

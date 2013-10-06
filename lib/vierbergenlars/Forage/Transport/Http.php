@@ -94,7 +94,7 @@ class Http implements TransportInterface
      * @param string $query The search query
      * @param array $searchFields An array of fields to search in
      * @param array $facets An array of fields to facet on
-     * @param array $filters Limit search to fields with a particular value(s). Each field contains an array of acceptable values.
+     * @param array $filter Limit search to fields with a particular value(s). Each field contains an array of acceptable values.
      * @param int $offset The offset to start in the result set
      * @param int $pagesize The size of each page
      * @param array $weight The weights to give each field.
@@ -105,7 +105,7 @@ class Http implements TransportInterface
               $query,
         array $searchFields = array(),
         array $facets       = array(),
-        array $filters      = array(),
+        array $filter      = array(),
               $offset       = 0,
               $pagesize     = 10,
         array $weight       = array()
@@ -115,7 +115,7 @@ class Http implements TransportInterface
             'q'=>(string)$query,
             'searchFields'=>$searchFields,
             'facets'=>implode(',', $facets),
-            'filters'=>$filters,
+            'filter'=>$filter,
             'offset'=>(int)$offset,
             'pagesize'=>(int)$pagesize,
             'weight'=>$weight,

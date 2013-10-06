@@ -75,7 +75,6 @@ class http extends \UnitTestCase
     function testSearchEmptyResultSet()
     {
         $search = $this->transport->search('s');
-        var_dump($search);
         $this->assertTrue(is_array($search));
         $this->assertEqual($search['totalHits'], 0);
         $this->assertEqual($search['hits'], array());
@@ -98,7 +97,7 @@ class http extends \UnitTestCase
 
     function testFacetedSearch()
     {
-        $lolSearch = $this->transport->search('lol', null, array('categories', 'body'));
+        $lolSearch = $this->transport->search('lol', array(), array('categories', 'body'));
         $this->assertEqual($lolSearch['facets'], array(
             "categories"=> array(
                 "images"=> 2,
@@ -114,20 +113,20 @@ class http extends \UnitTestCase
 
     function testFilteredSearch()
     {
-        $lolSearch = $this->transport->search('lol', null, null, array('categories'=> array('random')));
+        $lolSearch = $this->transport->search('lol', array(), array(), array('categories'=> array('random')));
         $this->assertEqual($lolSearch['totalHits'], 2);
     }
 
     function testPaginatedSearch()
     {
-        $lolSearch = $this->transport->search('lol', null, null, null, 1, 1);
+        $lolSearch = $this->transport->search('lol', array(), array(), array(), 1, 1);
         $this->assertEqual($lolSearch['totalHits'], 3);
         $this->assertEqual(count($lolSearch['hits']), 1);
     }
 
     function testWeighedSearch()
     {
-        $lolSearch = $this->transport->search('lol', null, null, null, 0, 10, array('body'=>array(4)));
+        $lolSearch = $this->transport->search('lol', array(), array(), array(), 0, 10, array('body'=>array(4)));
         $this->assertEqual($lolSearch['hits'][0]['document']['title'], 'Whatever');
 
     }
